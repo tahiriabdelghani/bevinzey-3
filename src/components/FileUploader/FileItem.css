@@ -1,0 +1,20 @@
+li {
+	 list-style: none;
+	 border-radius: 5px;
+	 display: flex;
+	 align-items: center;
+}
+ li svg {
+	 color: #A5B4CB;
+}
+ li p {
+	 font-size: 14px;
+	 width:max-content;
+}
+ li .actions {
+	 justify-self: flex-end;
+	 cursor: pointer;
+}
+ li .actions .fa-spinner {
+	 font-size: 1.2em;
+}

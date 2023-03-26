@@ -1,0 +1,128 @@
+import React, { useEffect } from "react";
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
+
+import { store } from "./redux/store";
+import "aos/dist/aos.css";
+import "./css/style.css";
+
+import AOS from "aos";
+
+import Home from "./pages/Home";
+import Features from "./pages/Features";
+import Pricing from "./pages/Pricing";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Help from "./pages/Help";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import ResetPassword from "./pages/ResetPassword";
+import PageNotFound from "./pages/PageNotFound";
+import Services from "./pages/Services";
+import TextSummarize from "./pages/services/TextSummarize";
+import TestToQuestions from "./pages/services/TextToQuestions";
+// import StudyGuide from "./pages/services/StudyGuide";
+import Profile from "./pages/Profile";
+
+import { Provider, useSelector } from "react-redux";
+// import CheckoutForm from './components/CheckoutForm';
+import Payment from "./pages/Payment";
+import Completion from "./pages/Completion";
+import ChangePassword from "./pages/ChangePassword";
+import Otp from "./pages/Otp";
+import Success from "./pages/Success";
+import EmailVerification from "./pages/EmailVerification";
+import EmailOtp from "./pages/EmailOtp ";
+// import ChangePassword from "./pages/profile/ChangePassword";
+// import 'echarts-gl';
+// import * as echarts from 'echarts';
+// import ReactECharts from 'echarts-for-react';
+
+function App() {
+  const location = useLocation();
+
+  const { user, isLoggedIn } = useSelector((state) => state.auth);
+  console.log(isLoggedIn);
+  console.log(user);
+
+  useEffect(() => {
+    AOS.init({
+      once: true,
+      disable: "phone",
+      duration: 600,
+      easing: "ease-out-sine",
+    });
+  });
+
+  useEffect(() => {
+    document.querySelector("html").style.scrollBehavior = "auto";
+    window.scroll({ top: 0 });
+    document.querySelector("html").style.scrollBehavior = "";
+  }, []); // triggered on route change
+
+  return (
+    <Provider store={store}>
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route path="/features" element={<Features />} />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog-post" element={<BlogPost />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/help" element={<Help />} />
+        <Route
+          path="/signin"
+          element={!isLoggedIn ? <SignIn /> : <Navigate replace to="/" />}
+        />
+        <Route
+          path="/signup"
+          element={!isLoggedIn ? <SignUp /> : <Navigate replace to="/" />}
+        />
+        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/change-password" element={<ChangePassword />} />
+        <Route path="/otp" element={<Otp />} />
+        <Route path="/email-otp" element={<EmailOtp />} />
+        <Route
+          path="/services"
+          element={
+            user?.subscriptionId ? (
+              <Services />
+            ) : (
+              <Navigate replace to="/" />
+            )
+          }
+        />
+        <Route
+          path="/services/text-summarize"
+          element={
+            user?.subscriptionId ? (
+              <TextSummarize />
+            ) : (
+              <Navigate replace to="/" />
+            )
+          }
+        />
+        <Route
+          path="/services/text-to-questions"
+          element={
+            user?.subscriptionId ? (
+              <TestToQuestions />
+            ) : (
+              <Navigate replace to="/" />
+            )
+          }
+        />
+        <Route path="/profile" element={!isLoggedIn ? <Home /> : <Profile />} />
+        <Route path="/payment" element={<Payment />} />
+        <Route path="/completion" element={<Completion />} />
+        <Route path="/success" element={<Success />} />
+        <Route path="/email-verification" element={<EmailVerification />} />
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
+    </Provider>
+  );
+}
+
+export default App;

@@ -1,0 +1,58 @@
+.file-card2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.file-card2 .file-inputs2 {
+  position: relative;
+}
+.file-card2 .file-inputs2 input {
+  position: relative;
+  text-align: right;
+  opacity: 0;
+  z-index: 2;
+  cursor: pointer;
+  height: 50px;
+  max-width: 255px;
+}
+.file-card2 .file-inputs2 button {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #f57c00;
+  background-color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 30px;
+  border: 1px solid #a5b4cb;
+}
+.file-card2 .file-inputs2 button i {
+  width: 1.5em;
+  height: 1.5em;
+  padding: 0.4em;
+  color: #f57c00;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0.8em;
+  font-weight: 600;
+}
+.file-card2 .file-inputs2:hover button {
+  background-color: #f57c00;
+  color: #fff;
+}
+.file-card2 .file-inputs2:hover button i {
+  color: #fff;
+}
+.main {
+  font-weight: bold;
+  margin-bottom: 0.4em;
+}

@@ -9,6 +9,7 @@ import { MdUploadFile } from "react-icons/md";
 import { BsFillTrashFill } from "react-icons/bs";
 import * as pdfjsLib from "pdfjs-dist/legacy/build/pdf";
 import PDFJSWorker from "pdfjs-dist/legacy/build/pdf.worker.entry";
+import axios from "axios";
 
 const FileUpload = ({
   files,
@@ -26,6 +27,7 @@ const FileUpload = ({
 
     const reader = new FileReader();
 
+    console.log(file.name.split(".").pop())
     reader.onload = async (e) => {
       if (file.name.split(".").pop() === "txt") {
         const txt = e.target.result;
@@ -36,8 +38,21 @@ const FileUpload = ({
         extractTextFromPDF(reader.result).then((text) => {
           setFileText(text);
         });
-      } else  {
-        alert("File type not supported yet.")
+      }  else {
+        const formData = new FormData();
+        formData.append("file", file, file?.name);
+        axios
+          .post(
+            "https://plankton-app-q74hx.ondigitalocean.app/files/import-docx",
+            formData
+          )
+          .then((res) => {
+            console.log(res.data);
+            setFileText(res.data.text);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       }
     };
     reader.readAsDataURL(event.target.files[0]);

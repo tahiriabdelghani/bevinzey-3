@@ -109,36 +109,24 @@ function TextToQuestions() {
     document.body.appendChild(element);
     element.click();
   }
-  function exportPdf() {
-    const doc = new jsPDF();
-    var splitContent = doc.splitTextToSize(result, 180);
-    doc.text(splitContent, 10, 10);
-    doc.save("TextToQuestions.pdf");
-  }
-  function exportDocx() {
-    let doc = new Document({
-      sections: [
-        {
-          children: [
-            new Paragraph({ text: result, heading: HeadingLevel.HEADING_3 }),
-          ],
-        },
-      ],
-    });
-    Packer.toBlob(doc).then((blob) => {
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "TextToQuestions.docx";
-      a.click();
-      URL.revokeObjectURL(url);
-    });
-  }
 
-  const exportFunctions = {
-    txt: exportTxt,
-    pdf: exportPdf,
-    docx: exportDocx,
+  const exportFile = () => {
+    if (exportAs !== "txt") {
+      const href =
+        "https://plankton-app-q74hx.ondigitalocean.app/ai-services/download-" +
+        exportAs +
+        "2?text=" +
+        encodeURI(result);
+      const link = document.createElement("a");
+      link.href = href;
+      link.setAttribute("download", "products.pdf"); //or any other extension
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(href);
+    } else {
+      exportTxt();
+    }
   };
 
   const [userData, setUserdata] = useState(null);
@@ -333,7 +321,7 @@ function TextToQuestions() {
                               <div className="flex justify-end items-center">
                                 <button
                                   onClick={() => {
-                                    exportFunctions[exportAs]();
+                                    exportFile()
                                   }}
                                   className={
                                     result !== ""
@@ -352,7 +340,7 @@ function TextToQuestions() {
                                 >
                                   <option value="txt">TXT</option>
                                   <option value="pdf">PDF</option>
-                                  <option value="docx">DOCX</option>
+                                  <option value="word">WORD</option>
                                 </select>
                               </div>
                             )}

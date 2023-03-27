@@ -128,6 +128,16 @@ function TextSummarize() {
     docx: exportDocx,
   };
 
+  const exportFile = () => {
+    axios.request({
+      method: 'GET',
+      url: `https://plankton-app-q74hx.ondigitalocean.app/ai-services/download-txt`,
+      params: {
+        text: summary
+      },
+    })
+  };
+
   const [userData, setUserdata] = useState(null);
 
   useEffect(() => {
@@ -240,7 +250,7 @@ function TextSummarize() {
                               <div className="flex justify-end items-center">
                                 <button
                                   onClick={() => {
-                                    exportFunctions[exportAs]();
+                                    exportFile();
                                   }}
                                   className={
                                     summary !== ""

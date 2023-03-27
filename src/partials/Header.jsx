@@ -113,7 +113,7 @@ function Header() {
                 <div className="flex">
                   <div className="flex-[50%]">
                     <DropDownItem
-                      to="#"
+                      to="https://www.youtube.com/channel/UCnJVvKeQ4y88coeCA6L-Lpw"
                       Image={events}
                       Title="Video Tutorials"
                       Description="Video Tutorials by Bevinzey"

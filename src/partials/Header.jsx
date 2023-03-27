@@ -12,6 +12,8 @@ import DropdownProfile from "../components/DropdownProfile";
 import axios from "axios";
 import { logoutUser } from "../redux/auth";
 
+import { FiArrowUpRight } from 'react-icons/fi'
+
 function Header() {
   const { isLoggedIn, user } = useSelector((state) => state.auth);
   // const {user} = useSelector((state)=>state.auth)
@@ -112,12 +114,26 @@ function Header() {
                 </li> */}
                 <div className="flex">
                   <div className="flex-[50%]">
-                    <DropDownItem
-                      to="#"
+                    {/* <DropDownItem
+                      to="https://www.youtube.com/channel/UCnJVvKeQ4y88coeCA6L-Lpw"
                       Image={events}
                       Title="Video Tutorials"
                       Description="Video Tutorials by Bevinzey"
-                    />
+                    /> */}
+                    <a href='https://www.youtube.com/channel/UCnJVvKeQ4y88coeCA6L-Lpw' className='flex py-3 h-28 hover:bg-gray-100 hover:rounded-md m-1  cursor-pointer px-2 space-x-3'>
+                      <div className='flex-[30%]  text-red-400'>
+                        <img src={events} alt="logo" />
+                      </div>
+                      <div className='flex-[60%] flex mt-4 '>
+                        <div className='flex flex-col space-y-2  '>
+                          <h2 className=' text-gray-600 font-bold text-[18px]'>Video Tutorials</h2>
+                          <h2 className='text-[13px] text-gray-500'>Video Tutorials by Bevinzey</h2>
+                        </div>
+                      </div>
+                      <div className='flex-[10%] text-gray-500 p-2'>
+                        <FiArrowUpRight size={20} />
+                      </div>
+                    </a>
                   </div>
                   <div className="flex-[50%]">
                     <DropDownItem

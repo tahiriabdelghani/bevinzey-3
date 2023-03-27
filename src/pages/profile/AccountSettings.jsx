@@ -16,48 +16,58 @@ function AccountSettings({ userData, getUserData }) {
 
   const updateUsername = (e) => {
     e.preventDefault();
-    axios
-      .post(
-        "https://plankton-app-q74hx.ondigitalocean.app/users/username/update/" +
-          user?.id,
-        {
-          username: values.username,
-        }
-      )
-      .then((res) => {
-        console.log(res.data);
-        getUserData();
-        Swal.fire({
-          icon: "success",
-          title: "Username updated successfully",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-        err.message === "Network Error"
-          ? Swal.fire({
-              icon: "warning",
-              title: "No internet connection. Please check your network",
-              showConfirmButton: false,
-              timer: 1500,
-            })
-          : Swal.fire({
-              icon: "info",
-              title: "Server error, please try later",
-              showConfirmButton: false,
-              timer: 1500,
-            });
+    if (userData?.username === values?.username) {
+      Swal.fire({
+        icon: "success",
+        title: "Username updated successfully",
+        showConfirmButton: false,
+        timer: 1500,
       });
+    }else{
+
+      axios
+        .post(
+          "https://plankton-app-q74hx.ondigitalocean.app/users/username/update/" +
+            user?.id,
+          {
+            username: values.username,
+          }
+        )
+        .then((res) => {
+          console.log(res.data);
+          getUserData();
+          Swal.fire({
+            icon: "success",
+            title: "Username updated successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+          err.message === "Network Error"
+            ? Swal.fire({
+                icon: "warning",
+                title: "No internet connection. Please check your network",
+                showConfirmButton: false,
+                timer: 1500,
+              })
+            : Swal.fire({
+                icon: "info",
+                title: "Server error, please try later",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+        });
+    }
   };
   const updateEmail = (e) => {
     e.preventDefault();
     console.log(userData?.email === values.email);
     if (userData?.email === values?.email) {
       Swal.fire({
-        icon: "warning",
-        title: "The entered email is the same as the old one",
+        icon: "success",
+        title: "Email address updated successfully",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -158,7 +168,7 @@ function AccountSettings({ userData, getUserData }) {
                       username: userData?.username,
                     });
                   }}
-                  className="px-4 text-center cursor-pointer w-full bg-white text-slate-800 font-semibold border-2 border-slate-800 py-2 text-white rounded-md text-sm my-8"
+                  className="px-4 text-center cursor-pointer w-full bg-white text-slate-800 font-semibold border-2 border-slate-800 py-2 rounded-md text-sm my-8"
                 >
                   CANCEL
                 </div>
@@ -198,7 +208,7 @@ function AccountSettings({ userData, getUserData }) {
                       email: userData?.email,
                     });
                   }}
-                  className="px-4 text-center cursor-pointer w-full bg-white text-slate-800 font-semibold border-2 border-slate-800 py-2 text-white rounded-md text-sm my-8"
+                  className="px-4 text-center cursor-pointer w-full bg-white text-slate-800 font-semibold border-2 border-slate-800 py-2 rounded-md text-sm my-8"
                 >
                   CANCEL
                 </div>
@@ -210,7 +220,7 @@ function AccountSettings({ userData, getUserData }) {
         <div className="flex justify-between mt-12 mb-8">
           <div>
             <div className="text-slate-800 font-bold">Close Account</div>
-            <div className="text-xs ">
+            <div className="text-xs text-gray-500">
               Delete Your Account and Account data.
             </div>
           </div>
@@ -218,6 +228,7 @@ function AccountSettings({ userData, getUserData }) {
             onClick={() => {
               Swal.fire({
                 title: "Are you sure you want to close your account?",
+                text: "It's sad to see you go :(",
                 showDenyButton: true,
                 showCancelButton: true,
                 showConfirmButton: false,

@@ -114,7 +114,11 @@ function Header() {
                 </li> */}
                 <div className="flex">
                   <div className="flex-[50%]">
+<<<<<<< HEAD
                     {/* <DropDownItem
+=======
+                    <DropDownItem
+>>>>>>> a4df8908038d5844d832edd7dfabaf0fe0a4188d
                       to="https://www.youtube.com/channel/UCnJVvKeQ4y88coeCA6L-Lpw"
                       Image={events}
                       Title="Video Tutorials"

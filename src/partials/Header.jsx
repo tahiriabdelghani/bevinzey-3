@@ -114,16 +114,7 @@ function Header() {
                 </li> */}
                 <div className="flex">
                   <div className="flex-[50%]">
-<<<<<<< HEAD
-                    {/* <DropDownItem
-=======
-                    <DropDownItem
->>>>>>> a4df8908038d5844d832edd7dfabaf0fe0a4188d
-                      to="https://www.youtube.com/channel/UCnJVvKeQ4y88coeCA6L-Lpw"
-                      Image={events}
-                      Title="Video Tutorials"
-                      Description="Video Tutorials by Bevinzey"
-                    /> */}
+
                     <a href='https://www.youtube.com/channel/UCnJVvKeQ4y88coeCA6L-Lpw' className='flex py-3 h-28 hover:bg-gray-100 hover:rounded-md m-1  cursor-pointer px-2 space-x-3'>
                       <div className='flex-[30%]  text-red-400'>
                         <img src={events} alt="logo" />
@@ -154,7 +145,7 @@ function Header() {
                       to="/blog"
                       Image={blognav}
                       Title="Blog"
-                      Description="Blogs thrown by Bevinzey"
+                      Description="Blogs by Bevinzey"
                     />
                   </div>
                   <div className="flex-[50%]">

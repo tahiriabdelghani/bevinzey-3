@@ -5,7 +5,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useSlider } from "react-use";
 import { useSelector } from "react-redux";
 
-const stripePromise = loadStripe("pk_test_51LV2p7D4I2Sn1lmvap8BlEv8ha0z3tKxxJ4CiGmPwaqhV6vNasnzfZM5E0ERrJPnWZC0dllSd2jaeAzm8akR8LxA00seiEBcnm")
+const stripePromise = loadStripe("pk_live_51LV2p7D4I2Sn1lmvhUMWGOc4XszaFs8CcsemnwXRGZvfEPxw7sqUn5gyzxxGAdAzpvIkUWYgxaCCZ7Ru4FAk1KeU00FqLPvzUY")
 
 function Payment() {
     // const [stripePromise, setStripePromise] = useState(null);

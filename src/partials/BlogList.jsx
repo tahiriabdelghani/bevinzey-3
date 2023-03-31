@@ -25,8 +25,6 @@ import parse from 'html-react-parser'
 
 function BlogList() {
 
-
-
   const dispatch = useDispatch();
   const { message } = useSelector((state) => state.message)
   //Get all blogs
@@ -63,6 +61,7 @@ function BlogList() {
   useEffect(() => {
     dispatch(clearMessage())
   }, [])
+
   return (
     <section className="relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -70,7 +69,7 @@ function BlogList() {
 
           {/*  Page header */}
           <div className="max-w-3xl pb-12 md:pb-20 text-center md:text-left">
-            <h1 className="h1" data-aos="fade-up">Refreshing news for developers</h1>
+            <h1 className="h1" data-aos="fade-up">Refreshing news for students and educators</h1>
           </div>
 
           {/*  Featured article */}
@@ -97,13 +96,13 @@ function BlogList() {
                     <div className="mb-3">
                       <ul className="flex flex-wrap text-xs font-medium -m-1">
                         <li className="m-1">
-                          <Link to="#" className="inline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-orange-600 hover:bg-orange-700 transition duration-150 ease-in-out">AI</Link>
+                          <Link className="inline-flex text-center text-gray-100 py-1 px-3 rounded-full bg-orange-600 hover:bg-orange-700 transition duration-150 ease-in-out">AI</Link>
                         </li>
 
                       </ul>
                     </div>
                     <h3 className="h4 mb-2">
-                      <Link to="/blog-post" className="hover:text-gray-100 transition duration-150 ease-in-out">{blog?.title}</Link>
+                      <Link to={`/blog-details/${blog?.id}`} className="hover:text-gray-100 transition duration-150 ease-in-out">{blog?.title}</Link>
                     </h3>
                   </header>
                   <div className='truncate max-h-12'><p className="text-lg  text-gray-400 grow">{blog?.content && parse((blog?.content))}</p></div>

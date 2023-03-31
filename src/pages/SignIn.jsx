@@ -52,7 +52,7 @@ function SignIn() {
         axios
           .get(
             "https://plankton-app-q74hx.ondigitalocean.app/users/find/" +
-              res?.data[1]
+            res?.data[1]
           )
           .then((res) => {
             dispatch(setUserData(res.data));
@@ -65,8 +65,8 @@ function SignIn() {
                 (error.response &&
                   error.response.data &&
                   error.response.data.message) ||
-                  error.message ||
-                  error.toString()
+                error.message ||
+                error.toString()
               )
             );
           });
@@ -77,8 +77,8 @@ function SignIn() {
             (error.response &&
               error.response.data &&
               error.response.data.message) ||
-              error.message ||
-              error.toString()
+            error.message ||
+            error.toString()
           )
         );
       });
@@ -137,7 +137,7 @@ function SignIn() {
                 <form>
                   <div className="flex flex-wrap -mx-3">
                     <div className="w-full px-3">
-                      <button
+                      {/* <button
                         onClick={() => navigate("https://plankton-app-q74hx.ondigitalocean.app/auth/google")}
                         className="btn px-0 text-white bg-red-600 hover:bg-red-700 w-full relative flex items-center">
                         <svg
@@ -154,7 +154,7 @@ function SignIn() {
                         <span className="flex-auto pl-16 pr-8 -ml-16">
                           Sign in with Google
                         </span>
-                      </button>
+                      </button> */}
                     </div>
 
                   </div>
@@ -168,7 +168,7 @@ function SignIn() {
                     aria-hidden="true"
                   ></div>
                   <div className="text-gray-400">
-                    Or, sign in with your email
+                    Sign in with your email
                   </div>
                   <div
                     className="border-t border-gray-700 border-dotted grow ml-3"
@@ -215,11 +215,11 @@ function SignIn() {
                         />
                         {showPassword ? (
                           <AiFillEyeInvisible
-                            className="absolute right-3 cursor-pointer text-orange-700" onClick={()=>{setShowPassword(false)}}
+                            className="absolute right-3 cursor-pointer text-orange-700" onClick={() => { setShowPassword(false) }}
                             size={20}
                           />
                         ) : (
-                          <AiFillEye className="absolute right-3 cursor-pointer text-orange-700" onClick={()=>{setShowPassword(true)}} size={20} />
+                          <AiFillEye className="absolute right-3 cursor-pointer text-orange-700" onClick={() => { setShowPassword(true) }} size={20} />
                         )}
                       </div>
                     </div>

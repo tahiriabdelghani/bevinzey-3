@@ -139,7 +139,7 @@ function SignUp() {
                 <form>
                   <div className="flex flex-wrap -mx-3">
                     <div className="w-full px-3">
-                      <button className="btn px-0 text-white bg-red-600 hover:bg-red-700 w-full relative flex items-center">
+                      {/* <button className="btn px-0 text-white bg-red-600 hover:bg-red-700 w-full relative flex items-center">
                         <svg
                           className="w-4 h-4 fill-current text-white opacity-75 shrink-0 mx-4"
                           viewBox="0 0 16 16"
@@ -154,7 +154,7 @@ function SignUp() {
                         <span className="flex-auto pl-16 pr-8 -ml-16">
                           Sign up with Google
                         </span>
-                      </button>
+                      </button> */}
                     </div>
                   </div>
                 </form>
@@ -164,7 +164,7 @@ function SignUp() {
                     aria-hidden="true"
                   ></div>
                   <div className="text-gray-400">
-                    Or, register with your email
+                    register with your email
                   </div>
                   <div
                     className="border-t border-gray-700 border-dotted grow ml-3"

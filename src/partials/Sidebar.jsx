@@ -64,7 +64,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
         "https://plankton-app-q74hx.ondigitalocean.app/users/find/" + user?.id
       )
       .then((res) => {
-        if (res.data.subscriptionId) {
+        if (res.data.subscription.Status === "Active") {
           setSubscriped(true);
         }
       })

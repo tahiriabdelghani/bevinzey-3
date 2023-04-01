@@ -57,6 +57,23 @@ function ProfileBody() {
     getUserData();
   }, []);
 
+  const deleteImage = () => {
+    axios
+      .post(
+        "https://plankton-app-q74hx.ondigitalocean.app/users/picture/update/" +
+          userId,
+        {
+          urlPhoto: null,
+        }
+      )
+      .then((res2) => {
+        getUserData();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className="min-w-[80%] mx-auto">
       <div className="my-8">

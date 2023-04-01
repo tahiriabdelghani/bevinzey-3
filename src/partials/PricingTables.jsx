@@ -163,7 +163,7 @@ function PricingTables() {
                       {priceOutput.plan1[value][2]}
                     </span>
                   </div>
-                  <div className="text-gray-400">Bevinzey Pricing</div>
+                  <div className="text-gray-400">Get started with AI-powered learning today!</div>
                 </div>
                 <div className="font-medium mb-3">Features include:</div>
                 <ul className="text-gray-400 -mb-3 grow">
@@ -310,7 +310,7 @@ function PricingTables() {
                       {priceOutput.plan3[value][2]}
                     </span>
                   </div>
-                  <div className="text-gray-400">Bevinzey Pricing</div>
+                  <div className="text-gray-400">Experience the full power of AI for education</div>
                 </div>
                 <div className="font-medium mb-3">
                   All features of Essential plus:

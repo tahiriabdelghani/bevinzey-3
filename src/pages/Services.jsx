@@ -9,6 +9,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserData } from "../redux/auth";
 import { clearMessage, setMessage } from "../redux/message";
+import { useNavigate } from "react-router-dom";
 
 function Services() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -65,6 +66,7 @@ function Services() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
 
+  const navigate = useNavigate()
   const getUserData = async () => {
     await axios
       .get(
@@ -72,7 +74,9 @@ function Services() {
       )
       .then((res) => {
         dispatch(setUserData(res.data));
-        console.log(JSON.stringify(res.data));
+        if(res.data.subscription.Status !== "Active"){
+          navigate("/")
+        }
       })
       .catch((error) => {
         dispatch(

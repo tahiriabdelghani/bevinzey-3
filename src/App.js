@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 
 import { store } from "./redux/store";
@@ -34,6 +34,7 @@ import Otp from "./pages/Otp";
 import Success from "./pages/Success";
 import EmailVerification from "./pages/EmailVerification";
 import EmailOtp from "./pages/EmailOtp ";
+import axios from "axios";
 // import ChangePassword from "./pages/profile/ChangePassword";
 // import 'echarts-gl';
 // import * as echarts from 'echarts';
@@ -59,7 +60,23 @@ function App() {
     document.querySelector("html").style.scrollBehavior = "auto";
     window.scroll({ top: 0 });
     document.querySelector("html").style.scrollBehavior = "";
-  }, []); // triggered on route change
+  }, []);
+
+  const [subscriped, setSubscriped] = useState(false);
+  useEffect(() => {
+    axios
+      .get(
+        "https://plankton-app-q74hx.ondigitalocean.app/users/find/" + user?.id
+      )
+      .then((res) => {
+        if (res.data.subscription.Status === "Active") {
+          setSubscriped(true);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <Provider store={store}>
@@ -86,32 +103,16 @@ function App() {
         <Route path="/email-otp" element={<EmailOtp />} />
         <Route
           path="/services"
-          element={
-            user?.subscriptionId ? (
-              <Services />
-            ) : (
-              <Navigate replace to="/" />
-            )
-          }
+          element={subscriped ? <Services /> : <Navigate replace to="/" />}
         />
         <Route
           path="/services/text-summarize"
-          element={
-            user?.subscriptionId ? (
-              <TextSummarize />
-            ) : (
-              <Navigate replace to="/" />
-            )
-          }
+          element={subscriped ? <TextSummarize /> : <Navigate replace to="/" />}
         />
         <Route
           path="/services/text-to-questions"
           element={
-            user?.subscriptionId ? (
-              <TestToQuestions />
-            ) : (
-              <Navigate replace to="/" />
-            )
+            subscriped ? <TestToQuestions /> : <Navigate replace to="/" />
           }
         />
         <Route path="/profile" element={!isLoggedIn ? <Home /> : <Profile />} />

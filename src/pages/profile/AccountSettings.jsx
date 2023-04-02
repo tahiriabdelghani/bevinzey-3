@@ -1,7 +1,9 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { logoutUser } from "../../redux/auth";
 
 function AccountSettings({ userData, getUserData }) {
   const { user } = useSelector((state) => state.auth);
@@ -123,10 +125,19 @@ function AccountSettings({ userData, getUserData }) {
       .then((res) => {
         console.log(res.data);
         Swal.fire("Account closed!", "", "success");
+        logOut()
       })
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  //Sign Out user
+  const logOut = () => {
+    dispatch(logoutUser());
+    navigate("/signin");
   };
 
   return (

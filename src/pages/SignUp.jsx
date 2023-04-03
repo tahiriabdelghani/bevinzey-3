@@ -11,6 +11,7 @@ import { registerUser } from "../redux/user-actions";
 import Notification from "./UI/Notification";
 import { AiFillEye } from "react-icons/ai";
 import { AiFillEyeInvisible } from "react-icons/ai";
+import GoogleAuth from "../components/GoogleAuth";
 
 const initialState = {
   firstName: "",
@@ -139,6 +140,7 @@ function SignUp() {
                 <form>
                   <div className="flex flex-wrap -mx-3">
                     <div className="w-full px-3">
+                      <GoogleAuth />
                       {/* <button className="btn px-0 text-white bg-red-600 hover:bg-red-700 w-full relative flex items-center">
                         <svg
                           className="w-4 h-4 fill-current text-white opacity-75 shrink-0 mx-4"

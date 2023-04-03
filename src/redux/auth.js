@@ -10,12 +10,12 @@ const initialState = {
   subscription:"",
   clientsecret: "",
   code:"",
-  email:""
+  email:"",
+  authData:""
 };
 const authSlice = createSlice({
   name: "auth",
   initialState,
-
   reducers: {
     logoutUser : (state,payload) => {
       state.isLoggedIn = false;
@@ -38,9 +38,13 @@ const authSlice = createSlice({
     },
     settEmail: (state,{payload})=>{
       state.email = payload
-    }
+    },
+    setAuthData : (state,{payload})=>{
+      state.authData = payload
+    },
+    
   }
 });
 
-export const {logoutUser,setUserData,setCode,settEmail, switchLoginStatus,setClientSecret } = authSlice.actions;
+export const {logoutUser,setUserData,setCode,settEmail, switchLoginStatus,setClientSecret, setAuthData } = authSlice.actions;
 export const authReducer = authSlice.reducer;

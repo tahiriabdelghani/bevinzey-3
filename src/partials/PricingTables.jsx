@@ -68,6 +68,7 @@ function PricingTables() {
   useEffect(() => {
     dispatch(clearMessage())
   }, [])
+
   return (
     <section className="relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -358,18 +359,7 @@ function PricingTables() {
                       Export Questions, and Study Guide as .txt,.doc or .pdf
                     </span>
                   </li>
-                  <li className="flex items-center mb-3">
-                    <svg
-                      className="w-3 h-3 fill-current text-green-500 mr-3 shrink-0"
-                      viewBox="0 0 12 12"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
-                    </svg>
-                    <span>
-                      Export Questions, and Study Guide as .txt,.doc or .pdf
-                    </span>
-                  </li>
+
                   <li className="flex items-center mb-3">
                     <svg
                       className="w-3 h-3 fill-current text-green-500 mr-3 shrink-0"

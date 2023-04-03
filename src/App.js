@@ -22,11 +22,9 @@ import PageNotFound from "./pages/PageNotFound";
 import Services from "./pages/Services";
 import TextSummarize from "./pages/services/TextSummarize";
 import TestToQuestions from "./pages/services/TextToQuestions";
-// import StudyGuide from "./pages/services/StudyGuide";
 import Profile from "./pages/Profile";
 
 import { Provider, useSelector } from "react-redux";
-// import CheckoutForm from './components/CheckoutForm';
 import Payment from "./pages/Payment";
 import Completion from "./pages/Completion";
 import ChangePassword from "./pages/ChangePassword";
@@ -35,10 +33,9 @@ import Success from "./pages/Success";
 import EmailVerification from "./pages/EmailVerification";
 import EmailOtp from "./pages/EmailOtp ";
 import axios from "axios";
-// import ChangePassword from "./pages/profile/ChangePassword";
-// import 'echarts-gl';
-// import * as echarts from 'echarts';
-// import ReactECharts from 'echarts-for-react';
+import ChatBevinzey from "./pages/services/ChatBevinzey";
+import AudioTranscription from "./pages/services/AudioTranscription";
+import MentorChatBevinzey from "./pages/services/MentorChatBevinzey";
 
 function App() {
   const location = useLocation();
@@ -63,20 +60,16 @@ function App() {
   }, []);
 
   const [subscriped, setSubscriped] = useState(false);
-  useEffect(() => {
-    axios
-      .get(
-        "https://plankton-app-q74hx.ondigitalocean.app/users/find/" + user?.id
-      )
-      .then((res) => {
-        if (res.data.subscription.Status === "Active") {
-          setSubscriped(true);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  axios
+    .get("https://plankton-app-q74hx.ondigitalocean.app/users/find/" + user?.id)
+    .then((res) => {
+      if (res.data.subscription.Status === "Active") {
+        setSubscriped(true);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 
   return (
     <Provider store={store}>
@@ -114,6 +107,18 @@ function App() {
           element={
             subscriped ? <TestToQuestions /> : <Navigate replace to="/" />
           }
+        />
+        <Route
+          path="/services/chat-bevinzey"
+          element={subscriped ? <ChatBevinzey /> : <Navigate replace to="/" />}
+        />
+        <Route
+          path="/services/mentor-chat-bevinzey"
+          element={subscriped ? <MentorChatBevinzey /> : <Navigate replace to="/" />}
+        />
+        <Route
+          path="/services/audio-transcription"
+          element={subscriped ? <AudioTranscription /> : <Navigate replace to="/" />}
         />
         <Route path="/profile" element={!isLoggedIn ? <Home /> : <Profile />} />
         <Route path="/payment" element={<Payment />} />

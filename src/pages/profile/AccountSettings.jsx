@@ -25,8 +25,7 @@ function AccountSettings({ userData, getUserData }) {
         showConfirmButton: false,
         timer: 1500,
       });
-    }else{
-
+    } else {
       axios
         .post(
           "https://plankton-app-q74hx.ondigitalocean.app/users/username/update/" +
@@ -125,7 +124,7 @@ function AccountSettings({ userData, getUserData }) {
       .then((res) => {
         console.log(res.data);
         Swal.fire("Account closed!", "", "success");
-        logOut()
+        logOut();
       })
       .catch((err) => {
         console.log(err);
@@ -246,7 +245,15 @@ function AccountSettings({ userData, getUserData }) {
                 denyButtonText: `Close`,
               }).then((result) => {
                 if (result.isDenied) {
-                  closeAccount();
+                  if (userData.subscription.Status === "Active") {
+                    Swal.fire(
+                      "Please cancel your subscription first.",
+                      "",
+                      "warning"
+                    );
+                  } else {
+                    closeAccount();
+                  }
                 }
               });
             }}

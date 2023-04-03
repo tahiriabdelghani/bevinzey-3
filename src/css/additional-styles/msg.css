@@ -1,0 +1,7 @@
+.small-div {
+  flex: 0 1 auto;
+}
+
+.big-div {
+  flex: 1 1 auto;
+}

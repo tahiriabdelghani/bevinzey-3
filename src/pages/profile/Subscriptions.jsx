@@ -46,28 +46,32 @@ function Subscriptions({ userData, getUserData }) {
           <h2 className="text-2xl text-slate-800 font-bold mb-4">
             Billing & Invoices
           </h2>
-          <div className="text-sm text-[#475569]">
-            Your {userData?.subscription?.plan} Plan is set to{" "}
-            <strong className="font-medium">
-              $
-              {
-                plans[userData?.subscription?.plan][
-                  userData?.subscription?.frequency
-                ]
-              }
-            </strong>{" "}
-            per{" "}
-            {userData?.subscription?.frequency === "Yearly" ? "year" : "month"}{" "}
-            and will renew on{" "}
-            <strong className="font-medium">
-              {userData?.subscription?.end_date.slice(0, 10)}
-            </strong>
-            .
-          </div>
+          {userData && (
+            <div className="text-sm text-[#475569]">
+              Your {userData?.subscription?.plan} Plan is set to{" "}
+              <strong className="font-medium">
+                $
+                {
+                  plans[userData?.subscription?.plan][
+                    userData?.subscription?.frequency
+                  ]
+                }
+              </strong>{" "}
+              per{" "}
+              {userData?.subscription?.frequency === "Yearly"
+                ? "year"
+                : "month"}{" "}
+              and will renew on{" "}
+              <strong className="font-medium">
+                {userData?.subscription?.end_date.slice(0, 10)}
+              </strong>
+              .
+            </div>
+          )}
           <div className="flex justify-between mt-6">
             <div className="md:w-[200px]">
               <a
-                href="https://billing.stripe.com/p/login/test_00g3fM5A0gwaav6144"
+                href="https://billing.stripe.com/p/login/8wM8zM18Tc5h6ty4gg"
                 target="_blank"
               >
                 <button className="flex px-2 items-center justify-center w-full bg-[green] font-semibold py-[6px] text-white rounded-md text-sm">
@@ -208,8 +212,7 @@ function Subscriptions({ userData, getUserData }) {
                     <td className="p-2 min-w-[140px]">
                       <div className="text-left">
                         {inv.lines.data[0].description
-                          .split(" ")[2]
-                          .slice(0, -1)}{" "}
+                          .split(" ")[2]}{" "}
                         Plan -{" "}
                         {inv.lines.data[0].description.includes("anual")
                           ? "Yearly"
@@ -218,12 +221,12 @@ function Subscriptions({ userData, getUserData }) {
                     </td>
                     <td className="p-2">
                       <div className="text-left font-medium">
-                        ${inv.amount_due/100}
+                        ${inv.amount_due / 100}
                       </div>
                     </td>
                     <td className="p-2">
                       <div className="text-left font-medium">
-                        ${inv.amount_paid/100}
+                        ${inv.amount_paid / 100}
                       </div>
                     </td>
                     <td className="p-2">

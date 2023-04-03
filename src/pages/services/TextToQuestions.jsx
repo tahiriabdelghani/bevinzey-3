@@ -225,6 +225,7 @@ function TextToQuestions() {
                               <option>True/False</option>
                               <option>Short answer</option>
                               <option>Fill in the blanks</option>
+                              <option>Higher-order thinking</option>
                             </select>
                           </div>
                         </div>

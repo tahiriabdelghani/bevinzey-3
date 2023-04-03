@@ -57,6 +57,25 @@ function ProfileBody() {
     getUserData();
   }, []);
 
+  const deleteImage = () => {
+    setImageLoading(true)
+    axios
+    .post(
+      "https://plankton-app-q74hx.ondigitalocean.app/users/picture/update/" +
+      user.id,
+      {
+        urlPhoto: null,
+      }
+      )
+      .then((res2) => {
+        setImageLoading(false)
+        getUserData();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className="min-w-[80%] mx-auto">
       <div className="my-8">
@@ -231,7 +250,7 @@ function ProfileBody() {
                         userId={user?.id}
                       />
                     </div>
-                    <div className="text-[#FF0F00] z-20 cursor-pointer">
+                    <div onClick={deleteImage} className="text-[#FF0F00] z-20 cursor-pointer">
                       Delete
                     </div>
                   </div>

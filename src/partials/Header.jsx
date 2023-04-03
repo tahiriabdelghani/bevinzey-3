@@ -12,7 +12,7 @@ import DropdownProfile from "../components/DropdownProfile";
 import axios from "axios";
 import { logoutUser } from "../redux/auth";
 
-import { FiArrowUpRight } from 'react-icons/fi'
+import { FiArrowUpRight } from "react-icons/fi";
 
 function Header() {
   const { isLoggedIn, user } = useSelector((state) => state.auth);
@@ -56,7 +56,7 @@ function Header() {
         "https://plankton-app-q74hx.ondigitalocean.app/users/find/" + user?.id
       )
       .then((res) => {
-        if (res.data.subscriptionId) {
+        if (res.data.subscription.Status === "Active") {
           setSubscriped(true);
         }
       })
@@ -64,7 +64,6 @@ function Header() {
         console.log(err);
       });
   }, []);
-
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -114,18 +113,31 @@ function Header() {
                 </li> */}
                 <div className="flex">
                   <div className="flex-[50%]">
+                    {/* <DropDownItem
+                      to="https://www.youtube.com/channel/UCnJVvKeQ4y88coeCA6L-Lpw"
+                      Image={events}
+                      Title="Video Tutorials"
+                      Description="Video Tutorials by Bevinzey"
+                    /> */}
 
-                    <a href='https://www.youtube.com/channel/UCnJVvKeQ4y88coeCA6L-Lpw' className='flex py-3 h-28 hover:bg-gray-100 hover:rounded-md m-1  cursor-pointer px-2 space-x-3'>
-                      <div className='flex-[30%]  text-red-400'>
+                    <a
+                      href="https://www.youtube.com/channel/UCnJVvKeQ4y88coeCA6L-Lpw"
+                      className="flex py-3 h-28 hover:bg-gray-100 hover:rounded-md m-1  cursor-pointer px-2 space-x-3"
+                    >
+                      <div className="flex-[30%]  text-red-400">
                         <img src={events} alt="logo" />
                       </div>
-                      <div className='flex-[60%] flex mt-4 '>
-                        <div className='flex flex-col space-y-2  '>
-                          <h2 className=' text-gray-600 font-bold text-[18px]'>Video Tutorials</h2>
-                          <h2 className='text-[13px] text-gray-500'>Video Tutorials by Bevinzey</h2>
+                      <div className="flex-[60%] flex mt-4 ">
+                        <div className="flex flex-col space-y-2  ">
+                          <h2 className=" text-gray-600 font-bold text-[18px]">
+                            Video Tutorials
+                          </h2>
+                          <h2 className="text-[13px] text-gray-500">
+                            Video Tutorials by Bevinzey
+                          </h2>
                         </div>
                       </div>
-                      <div className='flex-[10%] text-gray-500 p-2'>
+                      <div className="flex-[10%] text-gray-500 p-2">
                         <FiArrowUpRight size={20} />
                       </div>
                     </a>
@@ -320,7 +332,10 @@ function Header() {
                 )}
                 {isLoggedIn ? (
                   <>
-                    <li onClick={logOut} className="cursor-pointer font-medium w-full inline-flex items-center justify-center border border-transparent px-4 py-2 my-2 rounded-sm text-white bg-orange-600 hover:bg-orange-700 transition duration-150 ease-in-out">
+                    <li
+                      onClick={logOut}
+                      className="cursor-pointer font-medium w-full inline-flex items-center justify-center border border-transparent px-4 py-2 my-2 rounded-sm text-white bg-orange-600 hover:bg-orange-700 transition duration-150 ease-in-out"
+                    >
                       Sign out
                     </li>
                   </>

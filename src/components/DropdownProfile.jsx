@@ -74,7 +74,7 @@ function DropdownProfile({ align }) {
           aria-expanded={dropdownOpen}
         >
           <img
-            className="w-8 h-8 rounded-full bg-white"
+            className="w-8 h-8 rounded-full bg-white object-cover"
             src={userData?.urlPhoto ?? ""}
             onError={({ currentTarget }) => {
               currentTarget.onerror = null; // prevents looping

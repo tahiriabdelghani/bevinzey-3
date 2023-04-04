@@ -64,7 +64,7 @@ function Services() {
     },
 
     {
-      id: 0,
+      id: 2,
       title: "Chat Bevinzey",
       link: "chat-bevinzey",
 
@@ -88,12 +88,13 @@ function Services() {
       ),
     },
     {
-      id: 1,
+      id: 3,
       title: "Audio Transcription",
       link: "audio-transcription",
       desc: "Take any text, including essays, stories, passages, or even a students' response to an extended constructed response question and automatically generate questions and answers.",
       color: "bg-[#C1AAF2]",
       comingSoon: false,
+      premium: true,
       icon: (
         <svg
           width="24"
@@ -110,12 +111,13 @@ function Services() {
       ),
     },
     {
-      id: 1,
+      id: 4,
       title: "Mentor Chat Bevinzey",
       link: "mentor-chat-bevinzey",
       desc: "Take any text, including essays, stories, passages, or even a students' response to an extended constructed response question and automatically generate questions and answers.",
       color: "bg-[#C1AAF2]",
       comingSoon: false,
+      premium: true,
       icon: (
         <svg
           width="24"
@@ -136,6 +138,7 @@ function Services() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
 
+  const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
   const getUserData = async () => {
     await axios
@@ -143,6 +146,7 @@ function Services() {
         "https://plankton-app-q74hx.ondigitalocean.app/users/find/" + user?.id
       )
       .then((res) => {
+        setUserData(res.data);
         dispatch(setUserData(res.data));
         if (res.data.subscription.Status !== "Active") {
           navigate("/");
@@ -191,7 +195,13 @@ function Services() {
             {/* Cards */}
             <div className="grid grid-cols-12 gap-6">
               {services.map((tool) => {
-                return <Service key={tool.id} tool={tool} />;
+                if (tool.premium) {
+                  if (userData?.subscription.plan === "Premium") {
+                    return <Service key={tool.id} tool={tool} />;
+                  }
+                } else {
+                  return <Service key={tool.id} tool={tool} />;
+                }
               })}
             </div>
           </div>

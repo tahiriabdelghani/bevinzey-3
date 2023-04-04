@@ -64,10 +64,9 @@ function PricingTables() {
       });
   }, []);
 
-
   useEffect(() => {
-    dispatch(clearMessage())
-  }, [])
+    dispatch(clearMessage());
+  }, []);
 
   return (
     <section className="relative">
@@ -164,7 +163,9 @@ function PricingTables() {
                       {priceOutput.plan1[value][2]}
                     </span>
                   </div>
-                  <div className="text-gray-400">Get started with AI-powered learning today!</div>
+                  <div className="text-gray-400">
+                    Get started with AI-powered learning today!
+                  </div>
                 </div>
                 <div className="font-medium mb-3">Features include:</div>
                 <ul className="text-gray-400 -mb-3 grow">
@@ -198,6 +199,7 @@ function PricingTables() {
                     </svg>
                     <span>5 questions per question type</span>
                   </li>
+
                   <li className="flex items-center mb-3">
                     <svg
                       className="w-3 h-3 fill-current text-green-500 mr-3 shrink-0"
@@ -216,9 +218,19 @@ function PricingTables() {
                     >
                       <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
                     </svg>
+                    <span>Input Content as Text</span>
+                  </li>
+                  <li className="flex items-center mb-3">
+                    <svg
+                      className="w-3 h-3 fill-current text-green-500 mr-3 shrink-0"
+                      viewBox="0 0 12 12"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
+                    </svg>
                     <span>
-                      Generate Multiple Choice, True/False, Short Answer and
-                      Fill- In-The-Blank Questions
+                      Generate Multiple Choice, True/False, Short Answer, Fill-
+                      In-The-Blank and Higher-order thinking Questions
                     </span>
                   </li>
                   <li className="flex items-center mb-3">
@@ -229,7 +241,9 @@ function PricingTables() {
                     >
                       <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
                     </svg>
-                    <span>Input Content as Text</span>
+                    <span>
+                      Bevinzey AI Chat Bot
+                    </span>
                   </li>
                 </ul>
                 {!subscriped && (
@@ -270,11 +284,11 @@ function PricingTables() {
                           dispatch(
                             setMessage(
                               error.response &&
-                              error.response.data &&
-                              error.response.data.message
+                                error.response.data &&
+                                error.response.data.message
                             ) ||
-                            error.message ||
-                            error.toString()
+                              error.message ||
+                              error.toString()
                           );
                           setTimeout(() => {
                             dispatch(clearMessage());
@@ -311,7 +325,9 @@ function PricingTables() {
                       {priceOutput.plan3[value][2]}
                     </span>
                   </div>
-                  <div className="text-gray-400">Experience the full power of AI for education</div>
+                  <div className="text-gray-400">
+                    Experience the full power of AI for education
+                  </div>
                 </div>
                 <div className="font-medium mb-3">
                   All features of Essential plus:
@@ -325,7 +341,38 @@ function PricingTables() {
                     >
                       <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
                     </svg>
-                    <span>70 000 words and 2000 words Input length</span>
+                    <span>70 000 words per month</span>
+                  </li>
+                  <li className="flex items-center mb-3">
+                    <svg
+                      className="w-3 h-3 fill-current text-green-500 mr-3 shrink-0"
+                      viewBox="0 0 12 12"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
+                    </svg>
+                    <span>2000 words Input length</span>
+                  </li>
+                  <li className="flex items-center mb-3">
+                    <svg
+                      className="w-3 h-3 fill-current text-green-500 mr-3 shrink-0"
+                      viewBox="0 0 12 12"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
+                    </svg>
+                    <span>10 questions per question type</span>
+                  </li>
+
+                  <li className="flex items-center mb-3">
+                    <svg
+                      className="w-3 h-3 fill-current text-green-500 mr-3 shrink-0"
+                      viewBox="0 0 12 12"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
+                    </svg>
+                    <span>Create Study Guide</span>
                   </li>
                   <li className="flex items-center mb-3">
                     <svg
@@ -345,7 +392,9 @@ function PricingTables() {
                     >
                       <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
                     </svg>
-                    <span>Create Study Guide</span>
+                    <span>
+                      Export Questions, and Study Guide as .txt,.doc or .pdf
+                    </span>
                   </li>
                   <li className="flex items-center mb-3">
                     <svg
@@ -356,7 +405,55 @@ function PricingTables() {
                       <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
                     </svg>
                     <span>
-                      Export Questions, and Study Guide as .txt,.doc or .pdf
+                      Bevinzey AI Chat Bot
+                    </span>
+                  </li>
+                  <li className="flex items-center mb-3">
+                    <svg
+                      className="w-3 h-3 fill-current text-green-500 mr-3 shrink-0"
+                      viewBox="0 0 12 12"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
+                    </svg>
+                    <span>
+                      Bevinzey AI Mentor Chat Bot
+                    </span>
+                  </li>
+                  <li className="flex items-center mb-3">
+                    <svg
+                      className="w-3 h-3 fill-current text-green-500 mr-3 shrink-0"
+                      viewBox="0 0 12 12"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
+                    </svg>
+                    <span>
+                      Descriptive Questions
+                    </span>
+                  </li>
+                  <li className="flex items-center mb-3">
+                    <svg
+                      className="w-3 h-3 fill-current text-green-500 mr-3 shrink-0"
+                      viewBox="0 0 12 12"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
+                    </svg>
+                    <span>
+                      Audio and Video Transcription
+                    </span>
+                  </li>
+                  <li className="flex items-center mb-3">
+                    <svg
+                      className="w-3 h-3 fill-current text-green-500 mr-3 shrink-0"
+                      viewBox="0 0 12 12"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
+                    </svg>
+                    <span>
+                      Topic search
                     </span>
                   </li>
 
@@ -414,11 +511,11 @@ function PricingTables() {
                           dispatch(
                             setMessage(
                               error.response &&
-                              error.response.data &&
-                              error.response.data.message
+                                error.response.data &&
+                                error.response.data.message
                             ) ||
-                            error.message ||
-                            error.toString()
+                              error.message ||
+                              error.toString()
                           );
                           setTimeout(() => {
                             dispatch(clearMessage());

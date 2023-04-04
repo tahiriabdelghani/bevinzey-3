@@ -224,7 +224,7 @@ function ProfileBody() {
                   <div className="relative">
                     <img
                       src={userData?.urlPhoto ?? ""}
-                      className="rounded-full border-white border-4 border-[#ed3e0b] truncate w-[160px] h-[160px] bg-white"
+                      className="rounded-full border-white border-4 border-[#ed3e0b] truncate w-[160px] h-[160px] bg-white object-cover"
                       onError={({ currentTarget }) => {
                         currentTarget.onerror = null; // prevents looping
                         currentTarget.src = "/images/profile.png";

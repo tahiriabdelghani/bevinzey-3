@@ -1,5 +1,5 @@
 import { PaymentElement } from "@stripe/react-stripe-js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +12,7 @@ export default function CheckoutForm() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [couponCode, setCouponCode] = useState('');
 
-
+  const { clientsecret } = useSelector((state) => state.auth)
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -42,14 +42,32 @@ export default function CheckoutForm() {
     setIsProcessing(false);
   };
 
+  const [price, setPrice] = useState(clientsecret.price)
+
+
+  const getCoupon = () => {
+    if (clientsecret?.priceReduction?.amount === null && clientsecret?.priceReduction?.percentage === null) {
+      setPrice(clientsecret?.price)
+    } else if (clientsecret?.priceReduction?.amount !== null) {
+      setPrice(clientsecret.price - clientsecret?.priceReduction?.amount)
+    } else {
+      setPrice((clientsecret.price - ((clientsecret.price * clientsecret?.priceReduction?.percentage) / 100)))
+    }
+  }
+
+  useEffect(() => {
+    getCoupon()
+  }, [])
+
   const navigate = useNavigate()
 
-  const { clientsecret } = useSelector((state) => state.auth)
+  // console.log("qsqsqs " + (clientsecret.price - (clientsecret.price * clientsecret?.priceReduction?.percentage) / 100))
 
   return (
     <form id="payment-form" className="md:w-[40%] mx-[5%] md:mx-0 " onSubmit={handleSubmit}>
-      <p className="py-3 text-gray-800 font-medium">"Thank you for signing up for our 5-day free trial. After the trial period, your subscription will renew at a cost of
-        <span className="text-orange-500"> {clientsecret?.priceReduction?.amount !== null ? (clientsecret.price - clientsecret?.priceReduction?.amount) : clientsecret?.priceReduction?.amount !== null ? (clientsecret.price - (clientsecret.price * clientsecret?.priceReduction?.percentage) / 100) : clientsecret?.price} $ per month</span>, and payment will be taken automatically."</p>
+      <p className="py-3 text-gray-800 font-medium">"Thank you for signing up. Your subscription will renew at a cost of
+        <span className="text-white px-2">
+          {price} $ per month</span>, and payment will be taken automatically."</p>
       <PaymentElement id="payment-element" />
       {/* <input
         className="text-gray-700"
@@ -75,7 +93,6 @@ export default function CheckoutForm() {
           Cancel
         </span>
       </button>
-
 
     </form>
   );

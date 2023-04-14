@@ -12,17 +12,7 @@ function Faqs() {
 
           {/* Faqs */}
           <ul className="grid gap-8 md:grid-cols-2 xl:gap-x-16 lg:gap-y-12">
-            <li>
-              <h4 className="text-xl font-medium mb-2">
-                How does the Free Trial work?
-              </h4>
-              <p className="text-lg text-gray-400">
-                You can opt for our 5-day free trial anytime to check out our AI
-                tools and see for yourself how it helps you study more
-                efficiently. In case you decide to discontinue the selected
-                plan, you will be automatically moved to a free plan.
-              </p>
-            </li>
+
             <li>
               <h4 className="text-xl font-medium mb-2">
                 What payment methods do you offer?

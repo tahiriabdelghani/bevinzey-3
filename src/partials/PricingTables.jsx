@@ -400,60 +400,9 @@ function PricingTables() {
                 </ul>
                 {!subscriped && (
                   <div
-<<<<<<< HEAD
                     onClick={
                       handleBasicGetStarted
                     }
-=======
-                    onClick={async () => {
-                      let frequency =
-                        priceOutput.plan1[value][1] === "18"
-                          ? "Monthly"
-                          : "Yearly";
-                      // console.log({
-                      //   plan: "Starter",
-                      //   frequency: frequency,
-                      //   email: user?.email
-                      // })
-                      setIsVisible(true);
-                      await axios
-                        .post(
-                          "https://plankton-app-q74hx.ondigitalocean.app/payment/subscription/initial",
-                          {
-                            plan: "Basic",
-                            frequency: frequency,
-                            email: user?.email,
-                          }
-                        )
-                        .then((res) => {
-                          navigate("/payment");
-                          dispatch(
-                            setClientSecret({
-                              plan: "Starter",
-                              frequency: frequency,
-                              email: user?.email,
-                              clientsecret: res?.data.client_secret,
-                              price: priceOutput.plan1[value][1],
-                            })
-                          );
-                        })
-                        .catch((error) => {
-                          dispatch(
-                            setMessage(
-                              error.response &&
-                                error.response.data &&
-                                error.response.data.message
-                            ) ||
-                              error.message ||
-                              error.toString()
-                          );
-                          setTimeout(() => {
-                            dispatch(clearMessage());
-                          }, 5000);
-                        });
-                      setIsVisible(false);
-                    }}
->>>>>>> 88b3cf74b0b36d31133a4e7367fe5ffba763fe07
                     className=" p-3 mt-6"
                   >
                     <a
@@ -628,64 +577,8 @@ function PricingTables() {
                 </ul>
                 {!subscriped && (
                   <div
-<<<<<<< HEAD
                     onClick={
                       handlePremiumGetStarted}
-=======
-                    onClick={async () => {
-                      // setSubscriptionObject({
-                      //   plan: "Premium",
-                      //   frequency: priceOutput.plan3[value][1] === "37" ? "Monthly" : "Yearly",
-                      //   email: user?.email
-                      // })
-                      let frequency =
-                        priceOutput.plan3[value][1] === "37"
-                          ? "Monthly"
-                          : "Yearly";
-                      console.log({
-                        plan: "Premium",
-                        frequency: frequency,
-                        email: user?.email,
-                      });
-                      setIsVisible(true);
-                      await axios
-                        .post(
-                          "https://plankton-app-q74hx.ondigitalocean.app/payment/subscription/initial",
-                          {
-                            plan: "Premium",
-                            frequency: frequency,
-                            email: user?.email,
-                          }
-                        )
-                        .then((res) => {
-                          navigate("/payment");
-                          dispatch(
-                            setClientSecret({
-                              plan: "Premium",
-                              frequency: frequency,
-                              email: user?.email,
-                              clientsecret: res?.data.client_secret,
-                              price: priceOutput.plan3[value][1],
-                            })
-                          );
-                        })
-                        .catch((error) => {
-                          dispatch(
-                            setMessage(
-                              error.response &&
-                                error.response.data &&
-                                error.response.data.message
-                            ) ||
-                              error.message ||
-                              error.toString()
-                          );
-                          setTimeout(() => {
-                            dispatch(clearMessage());
-                          }, 5000);
-                        });
-                      setIsVisible(false);
-                    }}
->>>>>>> 88b3cf74b0b36d31133a4e7367fe5ffba763fe07
                     className=" p-3 mt-6"
                   >
                     <a

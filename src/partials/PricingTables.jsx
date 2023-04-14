@@ -69,117 +69,110 @@ function PricingTables() {
   }, []);
 
   const basicGetSTarted = async () => {
-
-    let frequency =
-      priceOutput.plan1[value][1] === "18"
-        ? "Monthly"
-        : "Yearly";
+    let frequency = priceOutput.plan1[value][1] === "18" ? "Monthly" : "Yearly";
     // console.log({
     //   plan: "Starter",
     //   frequency: frequency,
     //   email: user?.email
     // })
     setIsVisible(true);
-    isLoggedIn ? await axios
-      .post(
-        "https://plankton-app-q74hx.ondigitalocean.app/payment/subscription/initial",
-        {
-          plan: "Basic",
-          frequency: frequency,
-          email: user?.email,
-        }
-      )
-      .then((res) => {
-        navigate("/payment");
-        dispatch(
-          setClientSecret({
-            plan: "Starter",
-            frequency: frequency,
-            email: user?.email,
-            clientsecret: res?.data.client_secret,
-            price: priceOutput.plan1[value][1],
+    isLoggedIn
+      ? await axios
+          .post(
+            "https://plankton-app-q74hx.ondigitalocean.app/payment/subscription/initial",
+            {
+              plan: "Basic",
+              frequency: frequency,
+              email: user?.email,
+            }
+          )
+          .then((res) => {
+            navigate("/payment");
+            dispatch(
+              setClientSecret({
+                plan: "Starter",
+                frequency: frequency,
+                email: user?.email,
+                clientsecret: res?.data.client_secret,
+                price: priceOutput.plan1[value][1],
+              })
+            );
           })
-        );
-      })
-      .catch((error) => {
-        dispatch(
-          setMessage(
-            error.response &&
-            error.response.data &&
-            error.response.data.message
-          ) ||
-          error.message ||
-          error.toString()
-        );
-        setTimeout(() => {
-          dispatch(clearMessage());
-        }, 5000);
-      }) : navigate('/signin')
+          .catch((error) => {
+            dispatch(
+              setMessage(
+                error.response &&
+                  error.response.data &&
+                  error.response.data.message
+              ) ||
+                error.message ||
+                error.toString()
+            );
+            setTimeout(() => {
+              dispatch(clearMessage());
+            }, 5000);
+          })
+      : navigate("/signin");
 
     setIsVisible(false);
-
-  }
+  };
 
   const premiumGetStarted = async () => {
-
     // setSubscriptionObject({
     //   plan: "Premium",
     //   frequency: priceOutput.plan3[value][1] === "37" ? "Monthly" : "Yearly",
     //   email: user?.email
     // })
-    let frequency =
-      priceOutput.plan3[value][1] === "37"
-        ? "Monthly"
-        : "Yearly";
+    let frequency = priceOutput.plan3[value][1] === "37" ? "Monthly" : "Yearly";
     console.log({
       plan: "Premium",
       frequency: frequency,
       email: user?.email,
     });
     setIsVisible(true);
-    isLoggedIn ? await axios
-      .post(
-        "https://plankton-app-q74hx.ondigitalocean.app/payment/subscription/initial",
-        {
-          plan: "Premium",
-          frequency: frequency,
-          email: user?.email,
-        }
-      )
-      .then((res) => {
-        navigate("/payment");
-        dispatch(
-          setClientSecret({
-            plan: "Premium",
-            frequency: frequency,
-            email: user?.email,
-            clientsecret: res?.data.client_secret,
-            price: priceOutput.plan3[value][1],
+    isLoggedIn
+      ? await axios
+          .post(
+            "https://plankton-app-q74hx.ondigitalocean.app/payment/subscription/initial",
+            {
+              plan: "Premium",
+              frequency: frequency,
+              email: user?.email,
+            }
+          )
+          .then((res) => {
+            navigate("/payment");
+            dispatch(
+              setClientSecret({
+                plan: "Premium",
+                frequency: frequency,
+                email: user?.email,
+                clientsecret: res?.data.client_secret,
+                price: priceOutput.plan3[value][1],
+              })
+            );
           })
-        );
-      })
-      .catch((error) => {
-        dispatch(
-          setMessage(
-            error.response &&
-            error.response.data &&
-            error.response.data.message
-          ) ||
-          error.message ||
-          error.toString()
-        );
-        setTimeout(() => {
-          dispatch(clearMessage());
-        }, 5000);
-      }) : navigate('/signin')
+          .catch((error) => {
+            dispatch(
+              setMessage(
+                error.response &&
+                  error.response.data &&
+                  error.response.data.message
+              ) ||
+                error.message ||
+                error.toString()
+            );
+            setTimeout(() => {
+              dispatch(clearMessage());
+            }, 5000);
+          })
+      : navigate("/signin");
 
     setIsVisible(false);
-
-  }
+  };
 
   const handleBasicGetStarted = () => {
     let frequency = priceOutput.plan1[value][1] === "18" ? "Monthly" : "Yearly";
-
 
     if (isLoggedIn) {
       dispatch(
@@ -194,15 +187,10 @@ function PricingTables() {
     } else {
       navigate("/signin");
     }
-
-  }
-
+  };
 
   const handlePremiumGetStarted = () => {
-    let frequency =
-      priceOutput.plan3[value][1] === "37"
-        ? "Monthly"
-        : "Yearly";
+    let frequency = priceOutput.plan3[value][1] === "37" ? "Monthly" : "Yearly";
 
     if (isLoggedIn) {
       dispatch(
@@ -217,8 +205,7 @@ function PricingTables() {
     } else {
       navigate("/signin");
     }
-  }
-
+  };
 
   return (
     <section className="relative">
@@ -393,69 +380,11 @@ function PricingTables() {
                     >
                       <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
                     </svg>
-                    <span>
-                      Bevinzey AI Chat Bot
-                    </span>
+                    <span>Bevinzey AI Chat Bot</span>
                   </li>
                 </ul>
                 {!subscriped && (
-                  <div
-<<<<<<< HEAD
-                    onClick={
-                      handleBasicGetStarted
-                    }
-=======
-                    onClick={async () => {
-                      let frequency =
-                        priceOutput.plan1[value][1] === "18"
-                          ? "Monthly"
-                          : "Yearly";
-                      // console.log({
-                      //   plan: "Starter",
-                      //   frequency: frequency,
-                      //   email: user?.email
-                      // })
-                      setIsVisible(true);
-                      await axios
-                        .post(
-                          "https://plankton-app-q74hx.ondigitalocean.app/payment/subscription/initial",
-                          {
-                            plan: "Basic",
-                            frequency: frequency,
-                            email: user?.email,
-                          }
-                        )
-                        .then((res) => {
-                          navigate("/payment");
-                          dispatch(
-                            setClientSecret({
-                              plan: "Starter",
-                              frequency: frequency,
-                              email: user?.email,
-                              clientsecret: res?.data.client_secret,
-                              price: priceOutput.plan1[value][1],
-                            })
-                          );
-                        })
-                        .catch((error) => {
-                          dispatch(
-                            setMessage(
-                              error.response &&
-                                error.response.data &&
-                                error.response.data.message
-                            ) ||
-                              error.message ||
-                              error.toString()
-                          );
-                          setTimeout(() => {
-                            dispatch(clearMessage());
-                          }, 5000);
-                        });
-                      setIsVisible(false);
-                    }}
->>>>>>> 88b3cf74b0b36d31133a4e7367fe5ffba763fe07
-                    className=" p-3 mt-6"
-                  >
+                  <div onClick={handleBasicGetStarted} className=" p-3 mt-6">
                     <a
                       className="btn-sm text-white bg-orange-600 hover:bg-orange-700 w-full"
                       href="#0"
@@ -562,9 +491,7 @@ function PricingTables() {
                     >
                       <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
                     </svg>
-                    <span>
-                      Bevinzey AI Chat Bot
-                    </span>
+                    <span>Bevinzey AI Chat Bot</span>
                   </li>
                   <li className="flex items-center mb-3">
                     <svg
@@ -574,9 +501,7 @@ function PricingTables() {
                     >
                       <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
                     </svg>
-                    <span>
-                      Bevinzey AI Mentor Chat Bot
-                    </span>
+                    <span>Bevinzey AI Mentor Chat Bot</span>
                   </li>
                   <li className="flex items-center mb-3">
                     <svg
@@ -586,9 +511,7 @@ function PricingTables() {
                     >
                       <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
                     </svg>
-                    <span>
-                      Descriptive Questions
-                    </span>
+                    <span>Descriptive Questions</span>
                   </li>
                   <li className="flex items-center mb-3">
                     <svg
@@ -598,9 +521,7 @@ function PricingTables() {
                     >
                       <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
                     </svg>
-                    <span>
-                      Audio and Video Transcription
-                    </span>
+                    <span>Audio and Video Transcription</span>
                   </li>
                   <li className="flex items-center mb-3">
                     <svg
@@ -610,9 +531,7 @@ function PricingTables() {
                     >
                       <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
                     </svg>
-                    <span>
-                      Topic search
-                    </span>
+                    <span>Topic search</span>
                   </li>
 
                   <li className="flex items-center mb-3">
@@ -627,67 +546,7 @@ function PricingTables() {
                   </li>
                 </ul>
                 {!subscriped && (
-                  <div
-<<<<<<< HEAD
-                    onClick={
-                      handlePremiumGetStarted}
-=======
-                    onClick={async () => {
-                      // setSubscriptionObject({
-                      //   plan: "Premium",
-                      //   frequency: priceOutput.plan3[value][1] === "37" ? "Monthly" : "Yearly",
-                      //   email: user?.email
-                      // })
-                      let frequency =
-                        priceOutput.plan3[value][1] === "37"
-                          ? "Monthly"
-                          : "Yearly";
-                      console.log({
-                        plan: "Premium",
-                        frequency: frequency,
-                        email: user?.email,
-                      });
-                      setIsVisible(true);
-                      await axios
-                        .post(
-                          "https://plankton-app-q74hx.ondigitalocean.app/payment/subscription/initial",
-                          {
-                            plan: "Premium",
-                            frequency: frequency,
-                            email: user?.email,
-                          }
-                        )
-                        .then((res) => {
-                          navigate("/payment");
-                          dispatch(
-                            setClientSecret({
-                              plan: "Premium",
-                              frequency: frequency,
-                              email: user?.email,
-                              clientsecret: res?.data.client_secret,
-                              price: priceOutput.plan3[value][1],
-                            })
-                          );
-                        })
-                        .catch((error) => {
-                          dispatch(
-                            setMessage(
-                              error.response &&
-                                error.response.data &&
-                                error.response.data.message
-                            ) ||
-                              error.message ||
-                              error.toString()
-                          );
-                          setTimeout(() => {
-                            dispatch(clearMessage());
-                          }, 5000);
-                        });
-                      setIsVisible(false);
-                    }}
->>>>>>> 88b3cf74b0b36d31133a4e7367fe5ffba763fe07
-                    className=" p-3 mt-6"
-                  >
+                  <div onClick={handlePremiumGetStarted} className=" p-3 mt-6">
                     <a
                       className="btn-sm text-white bg-orange-600 hover:bg-orange-700 w-full"
                       href="#0"

@@ -29,14 +29,12 @@ function MyMessage({ text }) {
           </div>
         </div>
         <img
-          className="rounded-full ml-4 border-[#8290f1] border-[2px]"
+          className="min-w-[45px] max-w-[45px] min-h-[45px] max-h-[45px] rounded-full ml-4 border-[#8290f1] border-[2px] object-cover"
           src={userData?.urlPhoto ?? ""}
           onError={({ currentTarget }) => {
             currentTarget.onerror = null; // prevents looping
             currentTarget.src = "/images/profile.png";
           }}
-          width="40"
-          height="40"
           alt="User 02"
         />
       </div>

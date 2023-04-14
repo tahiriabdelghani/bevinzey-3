@@ -36,10 +36,13 @@ function Footer() {
 
               {/* 2nd block */}
               <div className="text-md ">
-                <h6 className="text-gray-200 font-medium mb-1 mb:mb-3 ">Services</h6>
+                <h6 className="text-gray-200 font-medium mb-1 mb:mb-4 ">Services</h6>
                 <ul className='space-y-2'>
                   <li className="mb-1">
                     <Link to={isLoggedIn ? "/services" : "/signin"} className="text-gray-400 hover:text-orange-600 transition duration-150 ease-in-out">Text to questions</Link>
+                  </li>
+                  <li className="mb-1">
+                    <Link to={isLoggedIn ? "/services" : "/signin"} className="text-gray-400 hover:text-orange-600 transition duration-150 ease-in-out">Study guide</Link>
                   </li>
                   <li className="mb-1">
                     <Link to={isLoggedIn ? "/services" : "/signin"} className="text-gray-400 hover:text-orange-600 transition duration-150 ease-in-out">Summarize text</Link>

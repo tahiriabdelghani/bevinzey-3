@@ -4,9 +4,7 @@ import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { store } from "./redux/store";
 import "aos/dist/aos.css";
 import "./css/style.css";
-
 import AOS from "aos";
-
 import Home from "./pages/Home";
 import Features from "./pages/Features";
 import Pricing from "./pages/Pricing";
@@ -36,6 +34,7 @@ import axios from "axios";
 import ChatBevinzey from "./pages/services/ChatBevinzey";
 import AudioTranscription from "./pages/services/AudioTranscription";
 import MentorChatBevinzey from "./pages/services/MentorChatBevinzey";
+import CouponFormPage from "./pages/CouponFormPage";
 
 function App() {
   const location = useLocation();
@@ -122,6 +121,8 @@ function App() {
         />
         <Route path="/profile" element={!isLoggedIn ? <Home /> : <Profile />} />
         <Route path="/payment" element={<Payment />} />
+        
+      <Route path="/coupon" element={<CouponFormPage />} />
         <Route path="/completion" element={<Completion />} />
         <Route path="/success" element={<Success />} />
         <Route path="/email-verification" element={<EmailVerification />} />

@@ -10,6 +10,8 @@ export default function CheckoutForm() {
 
   const [message, setMessage] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [couponCode, setCouponCode] = useState('');
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,6 +29,7 @@ export default function CheckoutForm() {
       confirmParams: {
         // Make sure to change this to your payment completion page
         return_url: `${window.location.origin}/completion`,
+        coupon: couponCode
       },
     });
 
@@ -45,8 +48,17 @@ export default function CheckoutForm() {
 
   return (
     <form id="payment-form" className="md:w-[40%] mx-[5%] md:mx-0 " onSubmit={handleSubmit}>
-      <p className="py-3 font-medium">"Thank you for signing up for our 5-day free trial. After the trial period, your subscription will renew at a cost of<span className="text-orange-800"> {clientsecret.price} $ per month</span>, and payment will be taken automatically."</p>
+      <p className="py-3 text-gray-800 font-medium">"Thank you for signing up for our 5-day free trial. After the trial period, your subscription will renew at a cost of
+        <span className="text-orange-500"> {clientsecret?.priceReduction?.amount !== null ? (clientsecret.price - clientsecret?.priceReduction?.amount) : clientsecret?.priceReduction?.amount !== null ? (clientsecret.price - (clientsecret.price * clientsecret?.priceReduction?.percentage) / 100) : clientsecret?.price} $ per month</span>, and payment will be taken automatically."</p>
       <PaymentElement id="payment-element" />
+      {/* <input
+        className="text-gray-700"
+        type="text"
+        placeholder="Enter coupon code"
+        value={couponCode}
+        onChange={(e) => setCouponCode(e.target.value)}
+      /> */}
+
       <button className="w-full flex justify-center items-center 
       bg-gradient-to-r from-orange-500 via-orange-600 to-orange-500 font-bold
       py-2.5 my-2" disabled={isProcessing || !stripe || !elements} id="submit">

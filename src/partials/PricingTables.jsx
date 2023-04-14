@@ -44,7 +44,7 @@ function PricingTables() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { user } = useSelector((state) => state.auth);
+  const { user, isLoggedIn } = useSelector((state) => state.auth);
   const { message } = useSelector((state) => state.message);
   const [visible, setIsVisible] = useState(false);
 
@@ -68,6 +68,158 @@ function PricingTables() {
   useEffect(() => {
     dispatch(clearMessage())
   }, [])
+
+  const basicGetSTarted = async () => {
+
+    let frequency =
+      priceOutput.plan1[value][1] === "18"
+        ? "Monthly"
+        : "Yearly";
+    // console.log({
+    //   plan: "Starter",
+    //   frequency: frequency,
+    //   email: user?.email
+    // })
+    setIsVisible(true);
+    isLoggedIn ? await axios
+      .post(
+        "https://plankton-app-q74hx.ondigitalocean.app/payment/subscription/initial",
+        {
+          plan: "Basic",
+          frequency: frequency,
+          email: user?.email,
+        }
+      )
+      .then((res) => {
+        navigate("/payment");
+        dispatch(
+          setClientSecret({
+            plan: "Starter",
+            frequency: frequency,
+            email: user?.email,
+            clientsecret: res?.data.client_secret,
+            price: priceOutput.plan1[value][1],
+          })
+        );
+      })
+      .catch((error) => {
+        dispatch(
+          setMessage(
+            error.response &&
+            error.response.data &&
+            error.response.data.message
+          ) ||
+          error.message ||
+          error.toString()
+        );
+        setTimeout(() => {
+          dispatch(clearMessage());
+        }, 5000);
+      }) : navigate('/signin')
+
+    setIsVisible(false);
+
+  }
+
+  const premiumGetStarted = async () => {
+
+    // setSubscriptionObject({
+    //   plan: "Premium",
+    //   frequency: priceOutput.plan3[value][1] === "37" ? "Monthly" : "Yearly",
+    //   email: user?.email
+    // })
+    let frequency =
+      priceOutput.plan3[value][1] === "37"
+        ? "Monthly"
+        : "Yearly";
+    console.log({
+      plan: "Premium",
+      frequency: frequency,
+      email: user?.email,
+    });
+    setIsVisible(true);
+    isLoggedIn ? await axios
+      .post(
+        "https://plankton-app-q74hx.ondigitalocean.app/payment/subscription/initial",
+        {
+          plan: "Premium",
+          frequency: frequency,
+          email: user?.email,
+        }
+      )
+      .then((res) => {
+        navigate("/payment");
+        dispatch(
+          setClientSecret({
+            plan: "Premium",
+            frequency: frequency,
+            email: user?.email,
+            clientsecret: res?.data.client_secret,
+            price: priceOutput.plan3[value][1],
+          })
+        );
+      })
+      .catch((error) => {
+        dispatch(
+          setMessage(
+            error.response &&
+            error.response.data &&
+            error.response.data.message
+          ) ||
+          error.message ||
+          error.toString()
+        );
+        setTimeout(() => {
+          dispatch(clearMessage());
+        }, 5000);
+      }) : navigate('/signin')
+
+    setIsVisible(false);
+
+  }
+
+  const handleBasicGetStarted = () => {
+    let frequency = priceOutput.plan1[value][1] === "18" ? "Monthly" : "Yearly";
+
+
+    if (isLoggedIn) {
+      dispatch(
+        setClientSecret({
+          plan: "Basic",
+          frequency: frequency,
+          email: user?.email,
+          price: priceOutput.plan1[value][1],
+        })
+      );
+      navigate("/coupon");
+    } else {
+      navigate("/signin");
+    }
+
+  }
+
+
+  const handlePremiumGetStarted = () => {
+    let frequency =
+      priceOutput.plan3[value][1] === "37"
+        ? "Monthly"
+        : "Yearly";
+
+    if (isLoggedIn) {
+      dispatch(
+        setClientSecret({
+          plan: "Basic",
+          frequency: frequency,
+          email: user?.email,
+          price: priceOutput.plan3[value][1],
+        })
+      );
+      navigate("/coupon");
+    } else {
+      navigate("/signin");
+    }
+  }
+
 
   return (
     <section className="relative">
@@ -234,54 +386,9 @@ function PricingTables() {
                 </ul>
                 {!subscriped && (
                   <div
-                    onClick={async () => {
-                      let frequency =
-                        priceOutput.plan1[value][1] === "18"
-                          ? "Monthly"
-                          : "Yearly";
-                      // console.log({
-                      //   plan: "Starter",
-                      //   frequency: frequency,
-                      //   email: user?.email
-                      // })
-                      setIsVisible(true);
-                      await axios
-                        .post(
-                          "https://plankton-app-q74hx.ondigitalocean.app/payment/subscription/initial",
-                          {
-                            plan: "Basic",
-                            frequency: frequency,
-                            email: user?.email,
-                          }
-                        )
-                        .then((res) => {
-                          navigate("/payment");
-                          dispatch(
-                            setClientSecret({
-                              plan: "Starter",
-                              frequency: frequency,
-                              email: user?.email,
-                              clientsecret: res?.data.client_secret,
-                              price: priceOutput.plan1[value][1],
-                            })
-                          );
-                        })
-                        .catch((error) => {
-                          dispatch(
-                            setMessage(
-                              error.response &&
-                              error.response.data &&
-                              error.response.data.message
-                            ) ||
-                            error.message ||
-                            error.toString()
-                          );
-                          setTimeout(() => {
-                            dispatch(clearMessage());
-                          }, 5000);
-                        });
-                      setIsVisible(false);
-                    }}
+                    onClick={
+                      handleBasicGetStarted
+                    }
                     className=" p-3 mt-6"
                   >
                     <a
@@ -373,59 +480,8 @@ function PricingTables() {
                 </ul>
                 {!subscriped && (
                   <div
-                    onClick={async () => {
-                      // setSubscriptionObject({
-                      //   plan: "Premium",
-                      //   frequency: priceOutput.plan3[value][1] === "37" ? "Monthly" : "Yearly",
-                      //   email: user?.email
-                      // })
-                      let frequency =
-                        priceOutput.plan3[value][1] === "37"
-                          ? "Monthly"
-                          : "Yearly";
-                      console.log({
-                        plan: "Premium",
-                        frequency: frequency,
-                        email: user?.email,
-                      });
-                      setIsVisible(true);
-                      await axios
-                        .post(
-                          "https://plankton-app-q74hx.ondigitalocean.app/payment/subscription/initial",
-                          {
-                            plan: "Premium",
-                            frequency: frequency,
-                            email: user?.email,
-                          }
-                        )
-                        .then((res) => {
-                          navigate("/payment");
-                          dispatch(
-                            setClientSecret({
-                              plan: "Premium",
-                              frequency: frequency,
-                              email: user?.email,
-                              clientsecret: res?.data.client_secret,
-                              price: priceOutput.plan3[value][1],
-                            })
-                          );
-                        })
-                        .catch((error) => {
-                          dispatch(
-                            setMessage(
-                              error.response &&
-                              error.response.data &&
-                              error.response.data.message
-                            ) ||
-                            error.message ||
-                            error.toString()
-                          );
-                          setTimeout(() => {
-                            dispatch(clearMessage());
-                          }, 5000);
-                        });
-                      setIsVisible(false);
-                    }}
+                    onClick={
+                      handlePremiumGetStarted}
                     className=" p-3 mt-6"
                   >
                     <a
@@ -600,12 +656,12 @@ function PricingTables() {
                 </ul>
                 {!subscriped && (
                   <div className=" p-3 mt-6">
-                    <a
+                    <button
                       className="btn-sm text-white bg-orange-600 hover:bg-orange-700 w-full"
-                      href="#0"
+                      onClick={basicGetSTarted}
                     >
                       Get started
-                    </a>
+                    </button>
                   </div>
                 )}
               </div>
@@ -681,12 +737,12 @@ function PricingTables() {
                 </ul>
                 {!subscriped && (
                   <div className=" p-3 mt-6">
-                    <a
+                    <button
                       className="btn-sm text-white bg-orange-600 hover:bg-orange-700 w-full"
-                      href="#0"
+                      onClick={premiumGetStarted}
                     >
                       Get started
-                    </a>
+                    </button>
                   </div>
                 )}
               </div>

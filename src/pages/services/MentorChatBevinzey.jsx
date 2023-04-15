@@ -103,7 +103,7 @@ function MentorChatBevinzey() {
   const createNewChatAndSend = (msg) => {
     axios
       .post(
-        "https://plankton-app-q74hx.ondigitalocean.app/ai-services/create/chat",
+        "https://plankton-app-q74hx.ondigitalocean.app/ai-services/create/chat/mentor",
         {
           userId: user.id,
         }
@@ -111,7 +111,13 @@ function MentorChatBevinzey() {
       .then((res) => {
         getChats();
         setSelectedChat(res.data.id);
-
+        setMessages([
+          ...messages,
+          {
+            sender: "me",
+            text: msg,
+          },
+        ]);
         setLoading(true);
         setNewMessage("");
 
@@ -195,8 +201,8 @@ function MentorChatBevinzey() {
       .then((res) => {
         getChats();
         setClear(false);
-        setSelectedChat(null)
-        setMessages([])
+        setSelectedChat(null);
+        setMessages([]);
       })
       .catch((err) => {
         console.log(err);

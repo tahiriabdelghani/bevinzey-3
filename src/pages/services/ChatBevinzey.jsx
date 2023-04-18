@@ -112,7 +112,7 @@ function ChatBevinzey() {
       )
       .then((res) => {
         getChats();
-        setSelectedChat(res.data.id);
+        
         setMessages([
           ...messages,
           {
@@ -134,17 +134,7 @@ function ChatBevinzey() {
           )
           .then((res2) => {
             setLoading(false);
-            setMessages([
-              ...messages,
-              {
-                sender: "me",
-                text: msg,
-              },
-              {
-                sender: "bot",
-                text: res2.data.message,
-              },
-            ]);
+            setSelectedChat(res.data.id);
           })
           .catch((err) => {
             console.log(err);

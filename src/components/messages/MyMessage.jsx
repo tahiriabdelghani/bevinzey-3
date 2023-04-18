@@ -51,13 +51,13 @@ function MyMessage({ text }) {
         <div className="relative flex items-center">
           {copied && (
             <span className="text-[11px] absolute -left-[25px] text-white bg-[#8886fe] rounded p-1 mb-1">
-              <MdOutlineContentCopy size={12}/>
+              <MdOutlineContentCopy size={12} />
             </span>
           )}
           <div onClick={handleClick}>
-            <div className="text-sm cursor-pointer bg-indigo-500 text-white p-3 rounded-lg rounded-tr-none border border-transparent shadow-md mb-1">
+            <pre className="text-sm font-inter cursor-pointer bg-indigo-500 text-white p-3 rounded-lg rounded-tr-none border border-transparent shadow-md mb-1">
               {text}
-            </div>
+            </pre>
           </div>
         </div>
         <img

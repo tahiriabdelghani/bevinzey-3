@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { TbListDetails } from "react-icons/tb";
 import { AiOutlineSend } from "react-icons/ai";
 
@@ -8,9 +8,16 @@ function MessagesFooter({
   newMessage,
   toggleChatList,
 }) {
+  const textareaRef = useRef(null);
+
+  const handleTextareaChange = (e) => {
+    textareaRef.current.style.height = "auto";
+    textareaRef.current.style.height = textareaRef.current.scrollHeight + "px";
+    setNewMessage(e.target.value);
+  };
   return (
     <div className="sticky bottom-0">
-      <div className="flex items-center justify-between bg-white border-t border-slate-200 px-4 sm:px-6 md:px-2 h-16">
+      <div className="flex items-center justify-between bg-white border-t border-slate-200 px-4 py-2 sm:px-6 md:px-2 max-h-32">
         {/* Message input */}
         <TbListDetails
           onClick={(e) => {
@@ -24,6 +31,7 @@ function MessagesFooter({
           className="grow flex"
           onSubmit={(e) => {
             e.preventDefault();
+            textareaRef.current.style.height = "auto";
             newMessage !== "" && sendMessage(newMessage);
           }}
         >
@@ -31,21 +39,21 @@ function MessagesFooter({
             <label htmlFor="message-input" className="sr-only">
               Type a message
             </label>
-            <input
+            <textarea
+              ref={textareaRef}
+              className="h-[40px] max-h-[80px] pr-10 w-full resize-none border text-black rounded focus:outline-none scrollbar-w-[3px] scrollbar-thin scrollbar-thumb-[#2e46e8] scrollbar-track-[#6d7eef] overflow-y-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full"
+              style={{ overflowY: "auto", overflowX: "hidden" }}
+              rows="1"
               value={newMessage}
               onChange={(e) => {
-                setNewMessage(e.target.value);
+                handleTextareaChange(e);
               }}
-              id="message-input"
-              className="form-input pr-16 w-full bg-slate-100 text-black border-transparent focus:bg-white focus:border-slate-300"
-              type="text"
-              placeholder="Aa"
-            />
-            <button className="text-slate-800 absolute right-3 bottom-[50%] translate-y-[50%]" type="submit">
-              <AiOutlineSend
-                
-                size={20}
-              />
+            ></textarea>
+            <button
+              className="text-slate-800 absolute right-3 bottom-[50%] translate-y-[35%]"
+              type="submit"
+            >
+              <AiOutlineSend size={20} />
             </button>
           </div>
         </form>

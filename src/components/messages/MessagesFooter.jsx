@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { TbListDetails } from "react-icons/tb";
 import { AiOutlineSend } from "react-icons/ai";
 
@@ -15,6 +15,12 @@ function MessagesFooter({
     textareaRef.current.style.height = textareaRef.current.scrollHeight + "px";
     setNewMessage(e.target.value);
   };
+
+  useEffect(() => {
+    textareaRef.current.style.height = "auto";
+    textareaRef.current.style.height = textareaRef.current.scrollHeight + "px";
+    console.log("first")
+  }, [newMessage]);
   return (
     <div className="sticky bottom-0">
       <div className="flex items-center justify-between bg-white border-t border-slate-200 px-4 py-2 sm:px-6 md:px-2 max-h-32">

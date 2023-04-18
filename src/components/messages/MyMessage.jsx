@@ -55,7 +55,7 @@ function MyMessage({ text }) {
             </span>
           )}
           <div onClick={handleClick}>
-            <pre className="text-sm font-inter cursor-pointer bg-indigo-500 text-white p-3 rounded-lg rounded-tr-none border border-transparent shadow-md mb-1">
+            <pre className="text-sm font-inter whitespace-pre-wrap cursor-pointer bg-indigo-500 text-white p-3 rounded-lg rounded-tr-none border border-transparent shadow-md mb-1">
               {text}
             </pre>
           </div>

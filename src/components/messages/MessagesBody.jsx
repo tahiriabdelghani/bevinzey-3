@@ -15,7 +15,7 @@ function MessagesBody({ messages, loading }) {
       })}
       {/* Chat msg */}
       {loading && (
-        <div className="flex items-start mb-4 last:mb-0">
+        <div className="flex items-start my-4 last:mb-0">
           <img
             className="rounded-full mr-4"
             src="/images/bevinzey-bot.png"

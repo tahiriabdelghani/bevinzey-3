@@ -58,10 +58,10 @@ function HeroHome() {
         <div className="relative pt-32 pb-10 md:pt-40 md:pb-16">
           {/* Section header */}
           <div className="max-w-3xl  mx-auto text-center pb-12 md:pb-16">
-            <p className="text-7xl mb-4 font-bold " data-aos="fade-up">
+            <p className="md:text-7xl text-4xl mb-4 font-bold " data-aos="fade-up">
               <span className="space-y-2">
                 Transform the way you{" "}
-                <span className="border-2 text-6xl border-orange-500 border-dashed ">
+                <span className="border-2 text-4xl md:text-6xl border-orange-500 border-dashed ">
                   learn.
                 </span>
               </span>

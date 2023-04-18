@@ -76,21 +76,20 @@ function BlogList() {
 
 
           {/*  Articles list */}
-          <div className="max-w-sm mx-auto md:max-w-none">
+          <div className=" md:mx-auto max-w-xs md:max-w-none">
 
             {/*  Section title */}
             {/* <h4 className="h4 pb-6 mb-10 border-b border-gray-700" data-aos="fade-up">Latest articles</h4> */}
 
             {/*  Articles container */}
-            <div className="grid gap-12 md:grid-cols-3 md:gap-x-6 md:gap-y-8 items-start">
-
+            <div className="grid gap-6 md:gap-12 md:grid-cols-3 md:gap-x-6 md:gap-y-8 items-center md:items-start">
 
               {visible ? <p>Loading...</p> : <>{blogs.map((blog, idx) => {
-                return <article className="flex flex-col h-full" key={idx} data-aos="fade-up">
+                return <article className="flex flex-col md:h-full " key={idx} data-aos="fade-up">
                   <header>
                     <Link to={`/blog-details/${blog?.id}`} className="block mb-6">
-                      <figure className="relative h-0 pb-9/16 overflow-hidden rounded-sm">
-                        <img className="absolute inset-0 w-full h-full object-cover transform hover:scale-105 transition duration-700 ease-out" src={blog.BlogPicture[blog.BlogPicture.length - 1]?.pictureUrl} width="352" height="198" alt="News 01" />
+                      <figure className="relative w-full h-40 bg-red-600 md:h-0 md:pb-9/16 md:overflow-hidden rounded-sm">
+                        <img className="absolute  w-full h-full object-cover inset-0 transform hover:scale-105 transition duration-700 ease-out" src={blog.BlogPicture[blog.BlogPicture.length - 1]?.pictureUrl} alt="News 01" />
                       </figure>
                     </Link>
                     <div className="mb-3">
@@ -101,11 +100,13 @@ function BlogList() {
 
                       </ul>
                     </div>
-                    <h3 className="h4 mb-2">
-                      <Link to={`/blog-details/${blog?.id}`} className="hover:text-gray-100 transition duration-150 ease-in-out">{blog?.title}</Link>
+                    <h3 className="md:h4 h5 w-80 md:w-full  md:max-w-none truncate mb-2">
+                      <Link to={`/blog-details/${blog?.id}`} className="hover:text-gray-100 transition  duration-150 ease-in-out">{blog?.title}</Link>
                     </h3>
                   </header>
-                  <div className='truncate max-h-12'><p className="text-lg  text-gray-400 grow">{blog?.content && parse((blog?.content))}</p></div>
+                  <div className='truncate w-80 md:w-full  max-h-6 md:max-h-12'>
+                    <p className="md:text-lg text-sm   text-gray-400 grow">{blog?.content && parse((blog?.content))}</p>
+                  </div>
 
 
                 </article>

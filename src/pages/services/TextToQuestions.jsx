@@ -116,7 +116,7 @@ function TextToQuestions() {
         "https://plankton-app-q74hx.ondigitalocean.app/ai-services/download-" +
         exportAs +
         "2?text=" +
-        encodeURI(result);
+        encodeURIComponent(result);
       const link = document.createElement("a");
       link.href = href;
       link.setAttribute("download", "products.pdf"); //or any other extension

@@ -35,6 +35,7 @@ import ChatBevinzey from "./pages/services/ChatBevinzey";
 import AudioTranscription from "./pages/services/AudioTranscription";
 import MentorChatBevinzey from "./pages/services/MentorChatBevinzey";
 import CouponFormPage from "./pages/CouponFormPage";
+import TopicExpander from "./pages/services/TopicExpander";
 
 function App() {
   const location = useLocation();
@@ -118,6 +119,10 @@ function App() {
         <Route
           path="/services/audio-transcription"
           element={subscriped ? <AudioTranscription /> : <Navigate replace to="/" />}
+        />
+        <Route
+          path="/services/topic-expander"
+          element={subscriped ? <TopicExpander /> : <Navigate replace to="/" />}
         />
         <Route path="/profile" element={!isLoggedIn ? <Home /> : <Profile />} />
         <Route path="/payment" element={<Payment />} />

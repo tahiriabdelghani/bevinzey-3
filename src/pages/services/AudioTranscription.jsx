@@ -58,6 +58,37 @@ function AudioTranscription() {
     }, 1000);
   };
 
+  const [exportAs, setExportAs] = useState("txt");
+
+  function exportTxt() {
+    console.log("first");
+    const element = document.createElement("a");
+    const file = new Blob([script], { type: "text/plain" });
+    element.href = URL.createObjectURL(file);
+    element.download = "TextToQuestions.txt";
+    document.body.appendChild(element);
+    element.click();
+  }
+
+  const exportFile = () => {
+    if (exportAs !== "txt") {
+      const href =
+        "https://plankton-app-q74hx.ondigitalocean.app/ai-services/download-" +
+        exportAs +
+        "2?text=" +
+        encodeURIComponent(script);
+      const link = document.createElement("a");
+      link.href = href;
+      link.setAttribute("download", "products.pdf"); //or any other extension
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(href);
+    } else {
+      exportTxt();
+    }
+  };
+
   return (
     <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
@@ -101,18 +132,49 @@ function AudioTranscription() {
                       onChange={uploadHandler}
                       className="w-full border-1.5 text-sm border-black h-[30px] text-black"
                     />
-                    <button
-                      onClick={generate}
-                      className="rounded-lg px-4 h-fit py-1.5 ml-4 bg-orange-600"
-                    >
-                      Generate
-                    </button>
                   </div>
                   {file?.size > 25 * 1024 * 1024 && (
                     <span className="text-xs text-[red]">
                       File too big (>25MB). File upload a smaller file.
                     </span>
                   )}
+                </div>
+                <div className="w-full flex justify-between m-auto my-4">
+                  <div className="flex justify-end items-center">
+                    <button
+                      onClick={() => {
+                        exportFile();
+                      }}
+                      className={
+                        script !== ""
+                          ? "btn-sm bg-gradient-to-r from-orange-600 via-orange-500 to-orange-600 text-white px-5 py-2.5 border-2  rounded-full hover:bg-orange-700 mx-3"
+                          : "btn-sm bg-gradient-to-r from-gray-600 via-gray-500 to-gray-600 text-white px-5 py-2.5 border-2  rounded-full hover:bg-orange-700 mx-3"
+                      }
+                    >
+                      Export
+                    </button>
+                    <span>As:</span>
+                    <select
+                      onChange={(e) => {
+                        setExportAs(e.target.value);
+                      }}
+                      className={"text-black rounded-xl mx-3"}
+                    >
+                      <option value="txt">TXT</option>
+                      <option value="pdf">PDF</option>
+                      <option value="word">WORD</option>
+                    </select>
+                  </div>
+                  <button
+                    onClick={() => {
+                      generate();
+                    }}
+                    className="btn-sm
+                  bg-gradient-to-r from-orange-600 via-orange-500 to-orange-600
+                  text-white px-5 py-2.5 border-2  rounded-full hover:bg-orange-700 ml-3"
+                  >
+                    Generate
+                  </button>
                 </div>
                 <div className="mt-4 relative h-[250px]">
                   <textarea
@@ -137,18 +199,15 @@ function AudioTranscription() {
                       <FaRegCopy />
                     </span>
                   )}
+                  {loading && (
+                    <div className="absolute w-[40%] flex flex-col left-[50%] -translate-x-[50%] -translate-y-[50%] top-[50%]">
+                      <img src={infinity} className="w-[40%] m-auto" />
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
           </div>
-          {loading && (
-            <div className="absolute w-[40%] flex flex-col left-[50%] -translate-x-[50%] -translate-y-[50%] top-[50%]">
-              <img src={infinity} className="w-[40%] m-auto" />
-              <span className="text-[#6d7eef] text-xs m-auto relative bottom-8">
-                Please be patient, this may take some while...
-              </span>
-            </div>
-          )}
         </main>
       </div>
     </div>

@@ -11,18 +11,17 @@ import { BsStars } from "react-icons/bs";
 import { BsFillTrashFill } from "react-icons/bs";
 import { CgClose } from "react-icons/cg";
 import { GiSpiderWeb } from "react-icons/gi";
-import { GrLanguage } from "react-icons/gr";
 import { AiTwotoneSetting } from "react-icons/ai";
 import { BsInfoCircle } from "react-icons/bs";
-import Chat from "../../components/Chat";
 import { GrClose } from "react-icons/gr";
+import Chat from "../../components/Chat";
 function ChatBevinzey() {
   const { user } = useSelector((state) => state.auth);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [newMessage, setNewMessage] = useState("");
 
-  const [messages, setMessages] = useState(null);
+  const [messages, setMessages] = useState([]);
   const getMessages = () => {
     selectedChat !== null &&
       axios
@@ -74,13 +73,11 @@ function ChatBevinzey() {
         setNewMessage("");
         axios
           .post(
-            "https://plankton-app-q74hx.ondigitalocean.app/ai-services/gpt/ChatRobotizia2",
+            "https://plankton-app-q74hx.ondigitalocean.app/ai-services/gpt/ChatBevinzey",
             {
               userId: user.id,
               chatId: selectedChat,
               prompt: msg,
-              language: language,
-              system: chatType,
             }
           )
           .then((res) => {
@@ -128,7 +125,7 @@ function ChatBevinzey() {
 
         axios
           .post(
-            "https://plankton-app-q74hx.ondigitalocean.app/ai-services/gpt/ChatRobotizia2",
+            "https://plankton-app-q74hx.ondigitalocean.app/ai-services/gpt/ChatBevinzey",
             {
               userId: user.id,
               chatId: res.data.id,
@@ -185,37 +182,15 @@ function ChatBevinzey() {
       });
   };
 
-  const [prompts, setPrompts] = useState([]);
-  const getPrompts = () => {
-    axios
-      .get("https://plankton-app-q74hx.ondigitalocean.app/prompts/findall")
-      .then((res) => {
-        setPrompts(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
   const [selectedChat, setSelectedChat] = useState(null);
 
   useEffect(() => {
     getChats();
-    getPrompts();
-    getChatTypes();
   }, []);
 
   useEffect(() => {
     getMessages();
   }, [selectedChat]);
-
-  const [selectedCategory, setSelectedCategory] = useState(0);
-
-  const categories = {
-    1: "social media",
-    2: "frameworks",
-    3: "blogs",
-  };
 
   const [clear, setClear] = useState(false);
 
@@ -236,41 +211,6 @@ function ChatBevinzey() {
       });
   };
 
-  const [language, setLanguage] = useState("english");
-
-  const [showSettings, setShowSettings] = useState(false);
-  const [chatType, setChatType] = useState("General AI");
-  const [chatTypes, setChatTypes] = useState({});
-  const getChatTypes = () => {
-    axios
-      .get(
-        "https://plankton-app-q74hx.ondigitalocean.app/ai-services/system/findall"
-      )
-      .then((res) => {
-        setChatTypes(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const icons = {
-    "General AI": "🤖",
-    "Coding Assistant": "💻",
-    CTO: "👨‍💼",
-    "Travel Guide": "🗺️",
-    "Stand-up Comedian": "🎙️",
-    Poet: "🖋️",
-    "Legal Advisor": "📜",
-    Historian: "📚",
-    Chef: "👨‍🍳",
-    Accountant: "💵",
-    "Life Coach": "🧘",
-    "Book Recommendation": "📖",
-    "Music Recommendation": "🎶",
-    "Movie Recommendation": "🎥",
-  };
-
   const [showTip, setShowTip] = useState(false);
   const showToolTip = () => {
     setShowTip(true);
@@ -285,12 +225,7 @@ function ChatBevinzey() {
   };
 
   return (
-    <div
-      onClick={() => {
-        setShowSettings(false);
-      }}
-      className="flex h-screen overflow-hidden"
-    >
+    <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
@@ -336,10 +271,18 @@ function ChatBevinzey() {
                               selectedChat={selectedChat}
                               setSelectedChat={setSelectedChat}
                               chat={chat}
+                              setMessages={setMessages}
                             />
                           ))}
                       </div>
-                      <div className="small-div py-4  border-[#5552FE]">
+                      <div className="flex justify-between small-div py-3  border-[#5552FE]">
+                        <div className="relative small-div flex items-center justify-evenly">
+                          <GrClose
+                            onClick={toggleChatList}
+                            className="text-black p-2 ml-2 cursor-pointer bg-gray-100 rounded"
+                            size={45}
+                          />
+                        </div>
                         {!clear ? (
                           <button
                             onClick={() => {
@@ -351,7 +294,7 @@ function ChatBevinzey() {
                             all
                           </button>
                         ) : (
-                          <div className="flex justify-center">
+                          <div className="flex m-auto justify-center">
                             <button
                               onClick={() => {
                                 clearChat();
@@ -378,68 +321,6 @@ function ChatBevinzey() {
                       <span>Nothing to show.</span>
                     </div>
                   )}
-                  <div className="relative small-div flex items-center justify-evenly py-4 border-t-2 border-gray-400">
-                    <GrClose
-                      onClick={toggleChatList}
-                      className="text-black p-2 cursor-pointer hover:bg-gray-100 mr-1 rounded"
-                      size={40}
-                    />
-                    <div className="flex items-center">
-                      <GrLanguage
-                        onClick={toggleChatList}
-                        className="mr-2 hidden 2xl:block"
-                        size={16}
-                      />
-                      <select
-                        value={language}
-                        onChange={(e) => {
-                          setLanguage(e.target.value);
-                        }}
-                        className="h-8 text-sm rounded-lg text-slate-600 border-slate-600 py-0"
-                      >
-                        <option value="english">English</option>
-                        <option value="portugal">Portuguese</option>
-                      </select>
-                    </div>
-                    <div className="flex items-center">
-                      <AiTwotoneSetting
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setShowSettings(!showSettings);
-                        }}
-                        className="text-black border-[1px] mx-1 border-black w-8 h-8 p-1.5 rounded cursor-pointer"
-                        size={14}
-                      />
-                      <span>{icons[chatType]}</span>
-                    </div>
-                    {showSettings && (
-                      <div
-                        onClick={(e) => e.stopPropagation()}
-                        className="text-black p-2 flex flex-col rounded bg-white absolute border-[1px] bottom-[64px] left-0 z-190 border-black"
-                      >
-                        <div
-                          className="flex justify-end cursor-pointer"
-                          onClick={() => {
-                            setShowSettings(false);
-                          }}
-                        >
-                          <CgClose size={12} />
-                        </div>
-                        <span className="text-sm mb-1">Chat type: </span>
-                        <select
-                          value={chatType}
-                          onChange={(e) => {
-                            setChatType(e.target.value);
-                          }}
-                          className="py-1 text-sm rounded"
-                        >
-                          {Object.keys(chatTypes).map((type) => (
-                            <option value={type}>{chatTypes[type]}</option>
-                          ))}
-                        </select>
-                      </div>
-                    )}
-                  </div>
                 </div>
               </div>
             )}
@@ -464,92 +345,7 @@ function ChatBevinzey() {
                 </span>
               )}
               <div className="big-div">
-                {messages?.length > 0 || loading ? (
-                  <MessagesBody messages={messages} loading={loading} />
-                ) : (
-                  <div className="w-[90%] xl:w-[1000px] mt-0 m-auto xl:mt-16">
-                    <div>
-                      <ul className="flex flex-wrap justify-evenly mx-12">
-                        <li className="mr-8 mt-2">
-                          <button
-                            onClick={() => setSelectedCategory(0)}
-                            className={`inline-flex items-center border-[2px] border-[#293fd2] justify-center text-sm font-medium leading-5 rounded-xl px-8 py-2 border shadow-sm text-white duration-150 ease-in-out  ${
-                              selectedCategory === 0
-                                ? "bg-[#2e46e8] text-white"
-                                : "bg-white text-[#2e46e8] "
-                            }`}
-                          >
-                            All
-                          </button>
-                        </li>
-                        <li className="mr-8 mt-2">
-                          <button
-                            onClick={() => setSelectedCategory(1)}
-                            className={`inline-flex items-center border-[2px] border-[#293fd2] justify-center text-sm font-medium leading-5 rounded-xl px-8 py-2 border shadow-sm text-white duration-150 ease-in-out  ${
-                              selectedCategory === 1
-                                ? "bg-[#2e46e8] text-white"
-                                : "bg-white text-[#2e46e8] "
-                            }`}
-                          >
-                            Social Media
-                          </button>
-                        </li>
-                        <li className="mr-8 mt-2">
-                          <button
-                            onClick={() => setSelectedCategory(2)}
-                            className={`inline-flex items-center border-[2px] border-[#293fd2] justify-center text-sm font-medium leading-5 rounded-xl px-8 py-2 border shadow-sm text-white duration-150 ease-in-out  ${
-                              selectedCategory === 2
-                                ? "bg-[#2e46e8] text-white"
-                                : "bg-white text-[#2e46e8] "
-                            }`}
-                          >
-                            Frameworks
-                          </button>
-                        </li>
-                        <li className="mr-8 mt-2">
-                          <button
-                            onClick={() => setSelectedCategory(3)}
-                            className={`inline-flex items-center border-[2px] border-[#293fd2] justify-center text-sm font-medium leading-5 rounded-xl px-8 py-2 border shadow-sm text-white duration-150 ease-in-out  ${
-                              selectedCategory === 3
-                                ? "bg-[#2e46e8] text-white"
-                                : "bg-white text-[#2e46e8] "
-                            }`}
-                          >
-                            Blogs
-                          </button>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="mt-4 h-[55vh] px-2 pb-3 scrollbar-thin scrollbar-thumb-[#5552FE] scrollbar-track-blue-300 overflow-y-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
-                      <div className="grid grid-cols-12 gap-2">
-                        {prompts.map((prompt) => {
-                          if (
-                            prompt.category.toLowerCase() ===
-                              categories[selectedCategory] ||
-                            selectedCategory === 0
-                          ) {
-                            return (
-                              <div
-                                key={prompt.id}
-                                onClick={() => {
-                                  setNewMessage(prompt.prompt);
-                                }}
-                                className="col-span-full sm:col-span-6 xl:col-span-18 bg-white  rounded-md drop-shadow-lg bdorder-[1px] border-gray-600 p-4 cursor-pointer"
-                              >
-                                <h1 className="text-black font-semibold">
-                                  {prompt.title}
-                                </h1>
-                                <span className="text-gray-500 text-sm">
-                                  {prompt.prompt}
-                                </span>
-                              </div>
-                            );
-                          }
-                        })}
-                      </div>
-                    </div>
-                  </div>
-                )}
+                <MessagesBody messages={messages} loading={loading} />
               </div>
               <div className="small-div sticky bottom-0">
                 <MessagesFooter

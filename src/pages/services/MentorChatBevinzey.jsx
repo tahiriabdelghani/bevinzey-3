@@ -11,6 +11,8 @@ import { BsStars } from "react-icons/bs";
 import { BsFillTrashFill } from "react-icons/bs";
 import { CgClose } from "react-icons/cg";
 import { GiSpiderWeb } from "react-icons/gi";
+import { BsInfoCircle } from "react-icons/bs";
+import { GrClose } from "react-icons/gr";
 import Chat from "../../components/Chat";
 import { setMessage } from "../../redux/message";
 function MentorChatBevinzey() {
@@ -209,7 +211,18 @@ function MentorChatBevinzey() {
       });
   };
 
-  const [language, setLanguage] = useState("english");
+  const [showTip, setShowTip] = useState(false);
+  const showToolTip = () => {
+    setShowTip(true);
+    setTimeout(() => {
+      setShowTip(false);
+    }, 1500);
+  };
+
+  const [showChatList, setShowChatList] = useState(false);
+  const toggleChatList = () => {
+    setShowChatList(!showChatList);
+  };
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -226,92 +239,111 @@ function MentorChatBevinzey() {
           />
         </div>
 
-        <main className="big-div scrollbar-thin scrollbar-thumb-[#4b5462] scrollbar-track-gray-300 overflow-y-scroll">
+        <main className="h-[calc(100%-111px)] scrollbar-thin scrollbar-thumb-[#5552FE] scrollbar-track-gray-300 overflow-y-scroll">
           <div className="relative flex h-full">
-            <div className="min-w-[140px] md:min-w-[200px]">
-              <div className="flex flex-col justify-between h-[calc(100vh-111px)]  justify-evenly  min-w-[140px] md:min-w-[200px] bg-white fixed">
-                <div className="small-div flex justify-center py-4 border-b-2 border-[#4b5462]">
-                  <button
-                    onClick={createNewChat}
-                    className="text-[#4b5462] text-sm mx-1 border-2 border-[#4b5462] py-[2px] px-2 flex items-center rounded"
-                  >
-                    <AiOutlinePlusCircle className="mr-2" /> Start new chat{" "}
-                  </button>
-                </div>
-                {chats.length > 0 ? (
-                  <>
-                    <div className="big-div scrollbar-thin scrollbar-thumb-[#4b5462] scrollbar-track-gray-300 overflow-y-scroll">
-                      {chats
-                        .slice(0)
-                        .reverse()
-                        .map((chat) => (
-                          <Chat
-                            onClick={() => {
-                              if (selectedChat !== chat.id) {
-                                setMessages([]);
-                                setSelectedChat(chat.id);
-                              }
-                            }}
-                            key={chat.id}
-                            selectedChat={selectedChat}
-                            chat={chat}
-                          />
-                        ))}
-                    </div>
-                    <div className="small-div py-4  border-[#4b5462]">
-                      {!clear ? (
-                        <button
-                          onClick={() => {
-                            setClear(true);
-                          }}
-                          className="text-[red] m-auto border-2 border-[red] py-[2px] px-5 flex items-center rounded"
-                        >
-                          <BsFillTrashFill className="mr-2" size={14} /> Clear
-                          all
-                        </button>
-                      ) : (
-                        <div className="flex justify-center">
-                          <button
-                            onClick={() => {
-                              clearChat();
-                            }}
-                            className="text-[red] border-2 p-2 border-[red]  text-center mx-2 flex items-center rounded"
-                          >
-                            <BsFillTrashFill size={14} />
-                          </button>
-                          <button
-                            onClick={() => {
-                              setClear(false);
-                            }}
-                            className="text-[green] border-2 p-2 border-[green] text-center mx-2 flex items-center rounded"
-                          >
-                            <CgClose size={14} />
-                          </button>
-                        </div>
-                      )}
-                    </div>
-                  </>
-                ) : (
-                  <div className="big-div text-gray-400 text-sm flex flex-col items-center justify-center">
-                    <GiSpiderWeb className="mb-2" size={55} />{" "}
-                    <span>Nothing to show.</span>
+            {showChatList && (
+              <div className="min-w-[280px] h-full z-20 drop-shadow-[60px_0px_50px_rgba(0,0,0,0.10)] fixed">
+                <div className="flex flex-col justify-between h-[calc(100%-111px)]  justify-evenly  min-w-[280px] bg-white">
+                  <div className="small-div flex justify-center py-4 border-b-2 border-[#5552FE]">
+                    <button
+                      onClick={createNewChat}
+                      className="text-[#5552FE] text-sm mx-1 border-2 border-[#5552FE] py-[2px] px-2 flex items-center rounded"
+                    >
+                      <AiOutlinePlusCircle className="mr-2" /> Start new chat{" "}
+                    </button>
                   </div>
-                )}
-                <div className="small-div flex justify-center py-4 border-t-2 border-gray-400">
-                  <select
-                    value={language}
-                    onChange={(e) => {
-                      setLanguage(e.target.value);
-                    }}
-                    className="h-8 text-sm rounded-lg text-slate-600 border-slate-600 py-0"
-                  >
-                    <option value="english">English</option>
-                    <option value="portugal">Portuguese</option>
-                  </select>
+                  {chats.length > 0 ? (
+                    <>
+                      <div className="big-div scrollbar-thin scrollbar-thumb-[#5552FE] scrollbar-track-gray-300 overflow-y-scroll">
+                        {chats
+                          .slice(0)
+                          .reverse()
+                          .map((chat) => (
+                            <Chat
+                              onClick={() => {
+                                if (selectedChat !== chat.id) {
+                                  setMessages([]);
+                                  setSelectedChat(chat.id);
+                                }
+                              }}
+                              key={chat.id}
+                              getChats={getChats}
+                              selectedChat={selectedChat}
+                              setSelectedChat={setSelectedChat}
+                              chat={chat}
+                              setMessages={setMessages}
+                            />
+                          ))}
+                      </div>
+                      <div className="flex justify-between small-div py-3  border-[#5552FE]">
+                        <div className="relative small-div flex items-center justify-evenly">
+                          <GrClose
+                            onClick={toggleChatList}
+                            className="text-black p-2 ml-2 cursor-pointer bg-gray-100 rounded"
+                            size={45}
+                          />
+                        </div>
+                        {!clear ? (
+                          <button
+                            onClick={() => {
+                              setClear(true);
+                            }}
+                            className="text-red-500 m-auto border-2 border-red-500 py-[2px] px-5 flex items-center rounded"
+                          >
+                            <BsFillTrashFill className="mr-2" size={14} /> Clear
+                            all
+                          </button>
+                        ) : (
+                          <div className="flex m-auto justify-center">
+                            <button
+                              onClick={() => {
+                                clearChat();
+                              }}
+                              className="text-red-500 border-2 p-2 border-red-500  text-center mx-2 flex items-center rounded"
+                            >
+                              <BsFillTrashFill size={14} />
+                            </button>
+                            <button
+                              onClick={() => {
+                                setClear(false);
+                              }}
+                              className="text-green-600 border-2 p-2 border-green-600 text-center mx-2 flex items-center rounded"
+                            >
+                              <CgClose size={14} />
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    </>
+                  ) : (
+                    <div className="big-div text-gray-400 text-sm flex flex-col items-center justify-center">
+                      <GiSpiderWeb className="mb-2" size={55} />{" "}
+                      <span>Nothing to show.</span>
+                    </div>
+                  )}
                 </div>
               </div>
-            </div>
-            <div className="grow flex flex-col justify-between h-full md:translate-x-0 transition-transform duration-300 ease-in-out translate-x-0">
+            )}
+            <div
+              onClick={() => {
+                setShowChatList(false);
+              }}
+              className="flex w-full flex-col justify-between h-full z-10"
+            >
+              {messages?.length > 0 && (
+                <span className="text-black flex h-[30px] justify-end pt-[4px] pr-3">
+                  {showTip && (
+                    <span className="text-xs bg-gray-300 rounded-full h-min px-2 py-[1px] mr-1">
+                      Double click on message to copy
+                    </span>
+                  )}
+                  <BsInfoCircle
+                    className="cursor-pointer"
+                    onClick={showToolTip}
+                    size={16}
+                  />{" "}
+                </span>
+              )}
               <div className="big-div">
                 <MessagesBody messages={messages} loading={loading} />
               </div>
@@ -320,6 +352,7 @@ function MentorChatBevinzey() {
                   setNewMessage={setNewMessage}
                   newMessage={newMessage}
                   sendMessage={sendMessage}
+                  toggleChatList={toggleChatList}
                 />
               </div>
             </div>

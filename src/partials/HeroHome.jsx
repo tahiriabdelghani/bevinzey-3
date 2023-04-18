@@ -66,14 +66,18 @@ function HeroHome() {
                 </span>
               </span>
             </p>
-            <div className="text-orange-400 text-4xl font-medium my-3 sm:my-6">
+            <div className="text-orange-400 text-3xl md:text-4xl font-medium my-3 sm:my-6">
               <Typical
                 steps={[
                   "Text to questions",
                   2000,
-                  "Summarize text to key points",
-                  4000,
+                  "Text summarizer",
+                  2000,
                   "Study guide",
+                  2000,
+                  "Bevinzey Bot",
+                  2000,
+                  "Mentor Bot",
                   2000,
                 ]}
                 loop={Infinity}

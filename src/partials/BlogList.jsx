@@ -82,7 +82,7 @@ function BlogList() {
             {/* <h4 className="h4 pb-6 mb-10 border-b border-gray-700" data-aos="fade-up">Latest articles</h4> */}
 
             {/*  Articles container */}
-            <div className="grid gap-6 md:gap-12 md:grid-cols-3 md:gap-x-6 md:gap-y-8 items-start">
+            <div className="grid gap-6 md:gap-12 md:grid-cols-3 md:gap-x-6 md:gap-y-8 items-center md:items-start">
 
               {visible ? <p>Loading...</p> : <>{blogs.map((blog, idx) => {
                 return <article className="flex flex-col md:h-full " key={idx} data-aos="fade-up">

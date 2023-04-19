@@ -144,9 +144,10 @@ function TopicExpander() {
                     Topic Expander
                   </h1>
                   <p className="text-slate-800 text-center w-[80%] mx-auto mt-4">
-                    Summarize any text with a click of a button. Bevinzey's
-                    summarizer can condense articles, slides or chapters down to
-                    the key points instantly.,
+                    Delve into any subject and receive a brilliantly crafted,
+                    comprehensive, yet succinct response fueled by cutting-edge
+                    AI. Master complex concepts with ease as the topic expander
+                    optimizes content for enhanced retention and comprehension.
                   </p>
                   <div className="mt-8 w-full md:w-[80%] m-auto">
                     <textarea

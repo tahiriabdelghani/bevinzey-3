@@ -27,7 +27,6 @@ const FileUpload = ({
 
     const reader = new FileReader();
 
-    console.log(file.name.split(".").pop())
     reader.onload = async (e) => {
       if (file.name.split(".").pop() === "txt") {
         const txt = e.target.result;
@@ -47,7 +46,6 @@ const FileUpload = ({
             formData
           )
           .then((res) => {
-            console.log(res.data);
             setFileText(res.data.text);
           })
           .catch((err) => {

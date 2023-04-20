@@ -34,10 +34,6 @@ function TextToQuestions() {
   const [fileText, setFileText] = useState("");
 
   useEffect(() => {
-    console.log(questionType);
-  }, [questionType]);
-
-  useEffect(() => {
     var count = 0;
     var split = text.split(" ");
     for (var i = 0; i < split.length; i++) {
@@ -75,7 +71,6 @@ function TextToQuestions() {
         )
         .then((res) => {
           setLoading(false);
-          console.log(res.data);
           setOutput(res.data);
           setResult(res.data.Questions);
         })
@@ -101,7 +96,6 @@ function TextToQuestions() {
   const [exportAs, setExportAs] = useState("txt");
 
   function exportTxt() {
-    console.log("first");
     const element = document.createElement("a");
     const file = new Blob([result], { type: "text/plain" });
     element.href = URL.createObjectURL(file);

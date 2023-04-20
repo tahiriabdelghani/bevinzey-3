@@ -36,7 +36,6 @@ function BlogList() {
     try {
       await axios.get("https://plankton-app-q74hx.ondigitalocean.app/blog/findall").then(res => {
         setBlogs(res?.data)
-        console.log("blogs :" + JSON.stringify(res?.data))
       }).catch((error) => {
         dispatch(setMessage((error.response &&
           error.response.data &&

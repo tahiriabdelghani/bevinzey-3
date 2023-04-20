@@ -35,7 +35,6 @@ function AccountSettings({ userData, getUserData }) {
           }
         )
         .then((res) => {
-          console.log(res.data);
           getUserData();
           Swal.fire({
             icon: "success",
@@ -64,7 +63,6 @@ function AccountSettings({ userData, getUserData }) {
   };
   const updateEmail = (e) => {
     e.preventDefault();
-    console.log(userData?.email === values.email);
     if (userData?.email === values?.email) {
       Swal.fire({
         icon: "success",
@@ -82,7 +80,6 @@ function AccountSettings({ userData, getUserData }) {
           }
         )
         .then((res) => {
-          console.log(res.data);
           Swal.fire({
             icon: "success",
             title: "Email address updated successfully",
@@ -91,7 +88,6 @@ function AccountSettings({ userData, getUserData }) {
           });
         })
         .catch((err) => {
-          console.log(err.message);
           err.message === "Network Error"
             ? Swal.fire({
                 icon: "warning",
@@ -122,7 +118,6 @@ function AccountSettings({ userData, getUserData }) {
         "https://plankton-app-q74hx.ondigitalocean.app/users/delete/" + user?.id
       )
       .then((res) => {
-        console.log(res.data);
         Swal.fire("Account closed!", "", "success");
         logOut();
       })

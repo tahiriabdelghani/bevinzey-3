@@ -28,7 +28,6 @@ function EditProfile({ userData, getUserData }) {
         }
       )
       .then((res) => {
-        console.log(res.data);
         getUserData();
         Swal.fire({
           icon: "success",

@@ -88,7 +88,6 @@ function TopicExpander() {
   const [exportAs, setExportAs] = useState("txt");
 
   function exportTxt() {
-    console.log("first");
     const element = document.createElement("a");
     const file = new Blob([result], { type: "text/plain" });
     element.href = URL.createObjectURL(file);

@@ -45,8 +45,6 @@ function EmailOtp() {
 
   }
 
-  console.log("otp code +" + otpCode)
-  console.log("received code +" + code)
   return (
     <div className="flex flex-col min-h-screen overflow-hidden bg-slate-800">
 

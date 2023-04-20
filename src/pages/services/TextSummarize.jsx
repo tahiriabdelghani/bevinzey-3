@@ -62,7 +62,6 @@ function TextSummarize() {
         )
         .then((res) => {
           setLoading(false);
-          console.log(res.data);
           setSummary(res.data.Summary);
         })
         .catch((err) => {
@@ -88,7 +87,6 @@ function TextSummarize() {
   const [exportAs, setExportAs] = useState("txt");
 
   function exportTxt() {
-    console.log("first");
     const element = document.createElement("a");
     const file = new Blob([summary], { type: "text/plain" });
     element.href = URL.createObjectURL(file);

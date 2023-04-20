@@ -19,7 +19,6 @@ function MessagesFooter({
   useEffect(() => {
     textareaRef.current.style.height = "auto";
     textareaRef.current.style.height = textareaRef.current.scrollHeight + "px";
-    console.log("first")
   }, [newMessage]);
   return (
     <div className="sticky bottom-0">

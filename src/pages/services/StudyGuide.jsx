@@ -57,7 +57,6 @@ function StudyGuide() {
       )
       .then((res) => {
         setLoading(false);
-        console.log(res.data.Questions);
         setSummary(res.data["Study guide"]);
       })
       .catch((err) => {

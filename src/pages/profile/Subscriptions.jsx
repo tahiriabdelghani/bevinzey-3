@@ -30,7 +30,6 @@ function Subscriptions({ userData, getUserData }) {
           user.id
       )
       .then((res) => {
-        console.log(res.data);
         setInvoices(res.data.data);
       });
   };

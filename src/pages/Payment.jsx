@@ -11,7 +11,6 @@ function Payment() {
     // const [stripePromise, setStripePromise] = useState(null);
     const [clientSecret, setClientSecret] = useState("");
     const { clientsecret } = useSelector((state) => state.auth)
-    // console.log(clientsecret)
 
     // useEffect(() => {
     //     fetch("/config").then(async (r) => {

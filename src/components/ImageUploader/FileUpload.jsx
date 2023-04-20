@@ -9,8 +9,6 @@ import "./FileUpload.css";
 const FileUpload = ({ files, text, getUserData, userId, setImageLoading }) => {
   const uploadHandler = (event) => {
     const file = event.target.files[0];
-    console.log("im heere");
-    console.log(file);
     setImageLoading(true)
     const formData = new FormData();
     formData.append("file", file, file?.name);
@@ -29,7 +27,6 @@ const FileUpload = ({ files, text, getUserData, userId, setImageLoading }) => {
             }
           )
           .then((res2) => {
-            console.log(res2.data);
             getUserData();
           })
           .catch((err) => {

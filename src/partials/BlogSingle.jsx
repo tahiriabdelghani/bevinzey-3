@@ -26,7 +26,6 @@ function BlogSingle() {
       await axios.get("https://plankton-app-q74hx.ondigitalocean.app/blog/" + Id).then(res => {
 
         setBlogData(res?.data)
-        console.log("blog :" + JSON.stringify(res?.data))
       }).catch((error) => {
         dispatch(setMessage((error.response &&
           error.response.data &&

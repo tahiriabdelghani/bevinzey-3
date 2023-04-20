@@ -48,7 +48,6 @@ function GoogleAuth() {
                 <GoogleLogin
                     useOneTap={true}
                     onSuccess={async (credentialResponse) => {
-                        console.log(credentialResponse);
 
                         await axios.post(
                             "https://plankton-app-q74hx.ondigitalocean.app/auth/thirdparty/google",
@@ -57,7 +56,6 @@ function GoogleAuth() {
                                 token: credentialResponse.credential,
                             }
                         ).then((response) => {
-                            // console.log("response?.data[1] : " + )
                             getUserData(response)
 
                         }).catch((error) => {

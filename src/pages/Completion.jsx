@@ -18,7 +18,6 @@ export default function Completion() {
   const getUserData = async () => {
     await axios.get("https://plankton-app-q74hx.ondigitalocean.app/users/find/" + user?.id).then(res => {
       dispatch(setUserData(res.data))
-      console.log(JSON.stringify(res.data))
     }).catch((error) => {
       dispatch(setMessage((error.response &&
         error.response.data &&

@@ -41,8 +41,6 @@ function App() {
   const location = useLocation();
 
   const { user, isLoggedIn } = useSelector((state) => state.auth);
-  console.log(isLoggedIn);
-  console.log(user);
 
   useEffect(() => {
     AOS.init({

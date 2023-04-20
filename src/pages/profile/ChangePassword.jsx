@@ -26,7 +26,6 @@ function ChangePassword() {
         }
       )
       .then((res) => {
-        console.log(res.data);
         Swal.fire({
           icon: "success",
           title: "Password changed successfully",
@@ -35,7 +34,6 @@ function ChangePassword() {
         });
       })
       .catch((err) => {
-        console.log(err.message);
         err.message === "Network Error"
           ? Swal.fire({
               icon: "warning",

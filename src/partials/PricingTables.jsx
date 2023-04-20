@@ -124,11 +124,6 @@ function PricingTables() {
     //   email: user?.email
     // })
     let frequency = priceOutput.plan3[value][1] === "37" ? "Monthly" : "Yearly";
-    console.log({
-      plan: "Premium",
-      frequency: frequency,
-      email: user?.email,
-    });
     setIsVisible(true);
     isLoggedIn
       ? await axios

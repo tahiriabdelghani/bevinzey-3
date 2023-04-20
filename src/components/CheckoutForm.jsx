@@ -60,8 +60,6 @@ export default function CheckoutForm() {
 
   const navigate = useNavigate()
 
-  // console.log("qsqsqs " + (clientsecret.price - (clientsecret.price * clientsecret?.priceReduction?.percentage) / 100))
-
   return (
     <form id="payment-form" className="md:w-[40%] mx-[5%] md:mx-0 " onSubmit={handleSubmit}>
       <p className="py-3 text-gray-800 font-medium">"Thank you for signing up. Your subscription will renew at a cost of

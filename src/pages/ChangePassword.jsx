@@ -59,7 +59,6 @@ function ChangePassword() {
           error.toString()))
       })
     }
-    console.log(email)
     setIsVisible(false)
 
   }

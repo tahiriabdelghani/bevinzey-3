@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Cta() {
   return (
@@ -13,7 +14,7 @@ function Cta() {
 
             {/* CTA button */}
             <div className="flex justify-center mb-8" data-aos="fade-up" data-aos-delay="400" data-aos-anchor="[data-aos-id-cta]">
-              <a className="btn text-white bg-orange-600 hover:bg-orange-700" href="#0">Get started</a>
+              <Link className="btn text-white bg-orange-600 hover:bg-orange-700" to="/pricing">Get started</Link>
             </div>
 
             {/* Check list */}

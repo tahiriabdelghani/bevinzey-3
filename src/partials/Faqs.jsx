@@ -12,7 +12,6 @@ function Faqs() {
 
           {/* Faqs */}
           <ul className="grid gap-8 md:grid-cols-2 xl:gap-x-16 lg:gap-y-12">
-
             <li>
               <h4 className="text-xl font-medium mb-2">
                 What payment methods do you offer?
@@ -62,11 +61,12 @@ function Faqs() {
                 What’s the refund policy?
               </h4>
               <p className="text-lg text-gray-400">
-                Experience the benefits of Bevinzey risk-free with our 5-day
-                trial. Get a chance to fully test the platform before
-                subscribing to a paid plan. Please note that refunds are not
-                available after the trial period. If you have any questions
-                regarding your plans, reach out to us at support@bevinzey.com.
+                Your satisfaction is our top priority at Bevinzey. If our
+                AI-driven learning platform doesn't meet your expectations, you
+                can claim a complete refund within the first 30 days. Contact
+                our customer support at support@bevinzey.com with your account
+                information and refund reason, and we'll promptly handle your
+                request.
               </p>
             </li>
           </ul>

@@ -63,7 +63,7 @@ function TextToQuestions() {
           "https://plankton-app-q74hx.ondigitalocean.app/ai-services/questions",
           {
             nbr_questions: parseInt(questionsNumber),
-            study_guide: userData?.subscription?.plan === "Premium",
+            study_guide: true,
             questions_type: questionType,
             input_text: text,
             userId: user?.id,
@@ -285,38 +285,36 @@ function TextToQuestions() {
                                 placeholder="Click generate to get your result"
                                 className="h-[250px] mb-8 resize-none w-full rounded-lg text-black border-2 border-[#ffa000] focus:border-[#e65100] scrollbar-thin scrollbar-thumb-[#e65100] scrollbar-track-[#ffa000] overflow-y-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full"
                               ></textarea>
-                              {user?.subscription?.plan === "Premium" &&
-                                result !== "" && (
-                                  <div>
-                                    {showAnswer ? (
-                                      <div
-                                        className="text-[orange] cursor-pointer absolute bottom-11 right-3"
-                                        onClick={() => {
-                                          setShowAnswer(false);
-                                          setResult(output.Questions);
-                                        }}
-                                      >
-                                        <AiFillEyeInvisible size={22} />
-                                      </div>
-                                    ) : (
-                                      <div
-                                        className="text-[orange] cursor-pointer absolute bottom-11 right-3"
-                                        onClick={() => {
-                                          setShowAnswer(true);
-                                          setResult(output["Study guide"]);
-                                        }}
-                                      >
-                                        <AiFillEye size={22} />
-                                      </div>
-                                    )}
+                              result !== "" && (
+                              <div>
+                                {showAnswer ? (
+                                  <div
+                                    className="text-[orange] cursor-pointer absolute bottom-11 right-3"
+                                    onClick={() => {
+                                      setShowAnswer(false);
+                                      setResult(output.Questions);
+                                    }}
+                                  >
+                                    <AiFillEyeInvisible size={22} />
+                                  </div>
+                                ) : (
+                                  <div
+                                    className="text-[orange] cursor-pointer absolute bottom-11 right-3"
+                                    onClick={() => {
+                                      setShowAnswer(true);
+                                      setResult(output["Study guide"]);
+                                    }}
+                                  >
+                                    <AiFillEye size={22} />
                                   </div>
                                 )}
+                              </div>
                             </div>
                             {userData?.subscription?.export && (
                               <div className="flex justify-end items-center">
                                 <button
                                   onClick={() => {
-                                    exportFile()
+                                    exportFile();
                                   }}
                                   className={
                                     result !== ""

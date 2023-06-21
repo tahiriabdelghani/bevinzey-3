@@ -36,6 +36,7 @@ import AudioTranscription from "./pages/services/AudioTranscription";
 import MentorChatBevinzey from "./pages/services/MentorChatBevinzey";
 import CouponFormPage from "./pages/CouponFormPage";
 import TopicExpander from "./pages/services/TopicExpander";
+import Manuscript from "./pages/services/Manuscript";
 
 function App() {
   const location = useLocation();
@@ -99,6 +100,10 @@ function App() {
         <Route
           path="/services/text-summarize"
           element={subscriped ? <TextSummarize /> : <Navigate replace to="/" />}
+        />
+        <Route
+          path="/services/authormatic"
+          element={subscriped ? <Manuscript /> : <Navigate replace to="/" />}
         />
         <Route
           path="/services/text-to-questions"

@@ -8,7 +8,7 @@ function Service({ tool }) {
         <div className="flex flex-col h-full p-5">
           <header>
             <div
-              className={`flex items-center justify-between ${tool.color} w-fit rounded-xl p-3`}
+              className={`flex h-[50px] w-[50px] items-center justify-between ${tool.color} w-fit rounded-xl p-1.5`}
             >
               {tool.icon}
             </div>

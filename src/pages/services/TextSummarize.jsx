@@ -14,6 +14,7 @@ import InfinityLoading from "../../images/Infinity.svg";
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 import jsPDF from "jspdf";
 import { Document, Packer, Paragraph, HeadingLevel, TextRun } from "docx";
+import { BsFillTrashFill } from "react-icons/bs";
 function TextSummarize() {
   const { user } = useSelector((state) => state.auth);
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -173,6 +174,7 @@ function TextSummarize() {
                               className="min-h-[250px] resize-none w-full rounded-lg text-black border-2 border-[#ffa000] focus:border-[#e65100] scrollbar-thin h-full scrollbar-thumb-[#e65100] scrollbar-track-[#ffa000] overflow-y-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full"
                             ></textarea>
                             <div className={` text-slate-800 mb-2`}>
+                              <div className="flex items-center justify-between">
                               <p
                                 className={`${
                                   wordCount > countMax && "text-[red]"
@@ -187,15 +189,23 @@ function TextSummarize() {
                                   </>
                                 )}
                               </p>
+                              {text !== "" && (
+                                  <div
+                                    className="text-[#ff6666] cursor-pointer mr-2 text-[14px]"
+                                    onClick={()=> {
+                                      setText("")
+                                      setFile([])
+                                    }}
+                                  >
+                                    <BsFillTrashFill size={20} />
+                                  </div>
+                                )}</div>
                             </div>
                             {userData?.subscription.export && (
                               <FileUpload
                                 setFileText={setText}
                                 files={file}
                                 setFiles={setFile}
-                                removeFile={() => {
-                                  setFile([]);
-                                }}
                                 text="Or upload a file instead"
                               />
                             )}

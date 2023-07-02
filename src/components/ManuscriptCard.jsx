@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { MdEditNote, MdContentCopy } from "react-icons/md";
+import {htmlToText} from "html-to-text"
 
 function ManuscriptCard({ manuscript, setResult }) {
   const [copied, setCopied] = useState(false);
@@ -12,6 +13,9 @@ function ManuscriptCard({ manuscript, setResult }) {
       setCopied(false);
     }, 1000);
   };
+
+  const { response } = manuscript
+  const plaintextResponse = htmlToText(response)
   return (
     <div className="col-span-full sm:col-span-6 xl:col-span-4 cursor-pointer bg-white shadow-lg rounded-sm border-[2px] border-[#ea580c] rounded-xl text-black">
       <div className="flex flex-col h-full p-5">
@@ -20,10 +24,10 @@ function ManuscriptCard({ manuscript, setResult }) {
             {manuscript.title}
           </h2>
           <div className="text-sm text-slate-800">
-            {manuscript.response
-              ? manuscript.response.length > 150
-                ? manuscript.response.slice(0, 150) + "..."
-                : manuscript.response
+            {plaintextResponse
+              ? plaintextResponse.length > 150
+                ? plaintextResponse.slice(0, 150) + "..."
+                : plaintextResponse
               : "Your content is being generated please wait."}
           </div>
         </div>
@@ -38,9 +42,9 @@ function ManuscriptCard({ manuscript, setResult }) {
                   >
                     Finished
                   </div>
-                  <MdEditNote onClick={() => setResult(manuscript.response)} className="text-[25px] mr-2" />
+                  <MdEditNote onClick={() => setResult(response)} className="text-[25px] mr-2" />
                   <MdContentCopy
-                    onClick={() => copyResult(manuscript.response)}
+                    onClick={() => copyResult(plaintextResponse)}
                     className="text-[16px] mr-4"
                   />
                   {copied && (

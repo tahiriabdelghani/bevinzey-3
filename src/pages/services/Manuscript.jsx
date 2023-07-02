@@ -47,7 +47,29 @@ function Manuscript() {
         timer: 1500,
       });
     } else {
-      setFiles([...files, ...event.target.files]);
+      const selectedFiles = event.target.files
+      let renamedFiles = []
+      for (let i = 0; i < selectedFiles.length; i++) {
+        const file = selectedFiles[i];
+        const timestamp = Date.now();
+        const reader = new FileReader();
+      
+        reader.onload = () => {
+          const fileContent = reader.result;
+          const renamedFile = new File([fileContent], `doc_${timestamp}.pdf`, {
+            type: file.type
+          });
+          renamedFiles.push(renamedFile);
+          // Optionally, you can log the renamed file here
+          console.log(renamedFile);
+      
+          if (renamedFiles.length === selectedFiles.length) {
+            setFiles([...files, ...renamedFiles]);
+          }
+        };
+      
+        reader.readAsArrayBuffer(file);
+      }
     }
   };
 
@@ -124,15 +146,15 @@ function Manuscript() {
       region: REGION,
     });
 
-    const filename = file.name.split(".")[0];
-    const timestamp = Date.now();
-    const extension = file.name.split(".").slice(-1)[0];
+    // const filename = file.name.split(".")[0];
+    // const timestamp = Date.now();
+    // const extension = file.name.split(".").slice(-1)[0];
 
-    const newName = filename + "-" + timestamp + "." + extension;
+    // const newName = filename + "-" + timestamp + "." + extension;
 
     const params = {
       Bucket: S3_BUCKET,
-      Key: newName,
+      Key: file.name,
       Body: file,
     };
 

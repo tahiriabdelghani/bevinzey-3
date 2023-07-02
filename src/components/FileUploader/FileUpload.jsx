@@ -17,7 +17,6 @@ const FileUpload = ({
   type,
   text,
   required,
-  removeFile,
   setFileText,
 }) => {
   pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJSWorker;
@@ -89,14 +88,6 @@ const FileUpload = ({
             {text}
           </button>
         </div>
-        {files.length > 0 && (
-          <div
-            className="text-[#ff6666] cursor-pointer mr-2 text-[14px] absolute right-12"
-            onClick={removeFile}
-          >
-            <BsFillTrashFill size={20} />
-          </div>
-        )}
       </div>
     </>
   );

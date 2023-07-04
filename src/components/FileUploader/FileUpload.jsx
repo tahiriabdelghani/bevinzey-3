@@ -41,7 +41,7 @@ const FileUpload = ({
         formData.append("file", file, file?.name);
         axios
           .post(
-            "https://plankton-app-q74hx.ondigitalocean.app/files/import-docx",
+            "https://api.bevinzey.com/files/import-docx",
             formData
           )
           .then((res) => {

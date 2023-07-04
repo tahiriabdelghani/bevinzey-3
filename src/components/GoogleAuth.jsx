@@ -19,7 +19,7 @@ function GoogleAuth() {
         setLoading(true)
         await axios
             .get(
-                "https://plankton-app-q74hx.ondigitalocean.app/users/find/" + response?.data[1]
+                "https://api.bevinzey.com/users/find/" + response?.data[1]
             )
             .then((res) => {
                 dispatch(setUserData(res.data));
@@ -50,7 +50,7 @@ function GoogleAuth() {
                     onSuccess={async (credentialResponse) => {
 
                         await axios.post(
-                            "https://plankton-app-q74hx.ondigitalocean.app/auth/thirdparty/google",
+                            "https://api.bevinzey.com/auth/thirdparty/google",
                             {
                                 // pass the token as part of the req body
                                 token: credentialResponse.credential,

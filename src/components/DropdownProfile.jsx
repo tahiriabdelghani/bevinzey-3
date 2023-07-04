@@ -53,7 +53,7 @@ function DropdownProfile({ align }) {
   useEffect(() => {
     axios
       .get(
-        "https://plankton-app-q74hx.ondigitalocean.app/users/find/" + user?.id
+        "https://api.bevinzey.com/users/find/" + user?.id
       )
       .then((res) => {
         setUserdata(res.data);

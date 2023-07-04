@@ -16,7 +16,7 @@ export default function Completion() {
   const { user } = useSelector((state) => state.auth)
 
   const getUserData = async () => {
-    await axios.get("https://plankton-app-q74hx.ondigitalocean.app/users/find/" + user?.id).then(res => {
+    await axios.get("https://api.bevinzey.com/users/find/" + user?.id).then(res => {
       dispatch(setUserData(res.data))
     }).catch((error) => {
       dispatch(setMessage((error.response &&

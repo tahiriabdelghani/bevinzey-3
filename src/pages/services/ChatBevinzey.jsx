@@ -26,7 +26,7 @@ function ChatBevinzey() {
     selectedChat !== null &&
       axios
         .get(
-          "https://plankton-app-q74hx.ondigitalocean.app/ai-services/chat/" +
+          "https://api.bevinzey.com/ai-services/chat/" +
             selectedChat
         )
         .then((res) => {
@@ -73,7 +73,7 @@ function ChatBevinzey() {
         setNewMessage("");
         axios
           .post(
-            "https://plankton-app-q74hx.ondigitalocean.app/ai-services/gpt/ChatBevinzey",
+            "https://api.bevinzey.com/ai-services/gpt/ChatBevinzey",
             {
               userId: user.id,
               chatId: selectedChat,
@@ -105,7 +105,7 @@ function ChatBevinzey() {
   const createNewChatAndSend = (msg) => {
     axios
       .post(
-        "https://plankton-app-q74hx.ondigitalocean.app/ai-services/create/chat",
+        "https://api.bevinzey.com/ai-services/create/chat",
         {
           userId: user.id,
         }
@@ -125,7 +125,7 @@ function ChatBevinzey() {
 
         axios
           .post(
-            "https://plankton-app-q74hx.ondigitalocean.app/ai-services/gpt/ChatBevinzey",
+            "https://api.bevinzey.com/ai-services/gpt/ChatBevinzey",
             {
               userId: user.id,
               chatId: res.data.id,
@@ -146,7 +146,7 @@ function ChatBevinzey() {
   const createNewChat = async () => {
     await axios
       .post(
-        "https://plankton-app-q74hx.ondigitalocean.app/ai-services/create/chat",
+        "https://api.bevinzey.com/ai-services/create/chat",
         {
           userId: user.id,
         }
@@ -161,7 +161,7 @@ function ChatBevinzey() {
   const getChats = () => {
     axios
       .get(
-        "https://plankton-app-q74hx.ondigitalocean.app/ai-services/user/chats/" +
+        "https://api.bevinzey.com/ai-services/user/chats/" +
           user.id
       )
       .then((res) => {
@@ -187,7 +187,7 @@ function ChatBevinzey() {
   const clearChat = () => {
     axios
       .get(
-        "https://plankton-app-q74hx.ondigitalocean.app/ai-services/delete/chats/user/" +
+        "https://api.bevinzey.com/ai-services/delete/chats/user/" +
           user.id
       )
       .then((res) => {

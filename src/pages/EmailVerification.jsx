@@ -30,7 +30,7 @@ function EmailVerification() {
     setIsVisible(true)
 
     await axios.post(
-      'https://plankton-app-q74hx.ondigitalocean.app/auth/SendEmail',
+      'https://api.bevinzey.com/auth/SendEmail',
       {
         email: email,
       }

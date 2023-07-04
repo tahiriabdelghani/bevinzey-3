@@ -53,7 +53,7 @@ function Header() {
   useEffect(() => {
     axios
       .get(
-        "https://plankton-app-q74hx.ondigitalocean.app/users/find/" + user?.id
+        "https://api.bevinzey.com/users/find/" + user?.id
       )
       .then((res) => {
         if (res.data.subscription.Status === "Active") {

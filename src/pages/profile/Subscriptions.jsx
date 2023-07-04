@@ -26,7 +26,7 @@ function Subscriptions({ userData, getUserData }) {
   const getInvoices = () => {
     axios
       .get(
-        "https://plankton-app-q74hx.ondigitalocean.app/users/invoices/user/" +
+        "https://api.bevinzey.com/users/invoices/user/" +
           user.id
       )
       .then((res) => {

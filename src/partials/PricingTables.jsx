@@ -22,7 +22,7 @@ function PricingTables() {
 
   // useEffect(() => {
   //   setIsVisible(true)
-  //   axios.post('https://plankton-app-q74hx.ondigitalocean.app/payment/subscription/initial',
+  //   axios.post('https://api.bevinzey.com/payment/subscription/initial',
   //     {
   //       plan: "Basic",
   //       frequency: priceOutput.plan1[value][1] && priceOutput.plan1[value][1] === "18" ? "Monthly" : "Annually",
@@ -52,7 +52,7 @@ function PricingTables() {
   useEffect(() => {
     axios
       .get(
-        "https://plankton-app-q74hx.ondigitalocean.app/users/find/" + user?.id
+        "https://api.bevinzey.com/users/find/" + user?.id
       )
       .then((res) => {
         if (res.data.subscriptionId) {
@@ -79,7 +79,7 @@ function PricingTables() {
     isLoggedIn
       ? await axios
           .post(
-            "https://plankton-app-q74hx.ondigitalocean.app/payment/subscription/initial",
+            "https://api.bevinzey.com/payment/subscription/initial",
             {
               plan: "Basic",
               frequency: frequency,
@@ -128,7 +128,7 @@ function PricingTables() {
     isLoggedIn
       ? await axios
           .post(
-            "https://plankton-app-q74hx.ondigitalocean.app/payment/subscription/initial",
+            "https://api.bevinzey.com/payment/subscription/initial",
             {
               plan: "Premium",
               frequency: frequency,

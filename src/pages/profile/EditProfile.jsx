@@ -19,7 +19,7 @@ function EditProfile({ userData, getUserData }) {
     e.preventDefault();
     axios
       .post(
-        "https://plankton-app-q74hx.ondigitalocean.app/users/profile/update/" +
+        "https://api.bevinzey.com/users/profile/update/" +
           user?.id,
         {
           first_name: values.firstName,

@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 export default function Success() {
   const getUserDat = async () => {
     await axios
-      .get("https://plankton-app-q74hx.ondigitalocean.app/auth/google")
+      .get("https://api.bevinzey.com/auth/google")
       .then((res) => {
         console.log("res :");
       });

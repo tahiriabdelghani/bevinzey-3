@@ -14,13 +14,13 @@ const FileUpload = ({ files, text, getUserData, userId, setImageLoading }) => {
     formData.append("file", file, file?.name);
     axios
       .post(
-        "https://plankton-app-q74hx.ondigitalocean.app/files/upload",
+        "https://api.bevinzey.com/files/upload",
         formData
       )
       .then((res1) => {
         axios
           .post(
-            "https://plankton-app-q74hx.ondigitalocean.app/users/picture/update/" +
+            "https://api.bevinzey.com/users/picture/update/" +
               userId,
             {
               urlPhoto: res1.data,

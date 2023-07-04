@@ -55,7 +55,7 @@ function TopicExpander() {
       setResult("");
       axios
         .post(
-          "https://plankton-app-q74hx.ondigitalocean.app/ai-services/topic-generator",
+          "https://api.bevinzey.com/ai-services/topic-generator",
           {
             input_text: text,
             userId: user?.id,
@@ -99,7 +99,7 @@ function TopicExpander() {
   const exportFile = () => {
     if (exportAs !== "txt") {
       const href =
-        "https://plankton-app-q74hx.ondigitalocean.app/ai-services/download-" +
+        "https://api.bevinzey.com/ai-services/download-" +
         exportAs +
         "2?text=" +
         encodeURIComponent(result);

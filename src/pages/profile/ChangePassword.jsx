@@ -18,7 +18,7 @@ function ChangePassword() {
     e.preventDefault();
     axios
       .post(
-        "https://plankton-app-q74hx.ondigitalocean.app/users/password/update/" +
+        "https://api.bevinzey.com/users/password/update/" +
           user?.id,
         {
           old_password: values.oldPwd,

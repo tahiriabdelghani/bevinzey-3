@@ -28,7 +28,7 @@ function AccountSettings({ userData, getUserData }) {
     } else {
       axios
         .post(
-          "https://plankton-app-q74hx.ondigitalocean.app/users/username/update/" +
+          "https://api.bevinzey.com/users/username/update/" +
             user?.id,
           {
             username: values.username,
@@ -73,7 +73,7 @@ function AccountSettings({ userData, getUserData }) {
     } else {
       axios
         .post(
-          "https://plankton-app-q74hx.ondigitalocean.app/users/email/update/" +
+          "https://api.bevinzey.com/users/email/update/" +
             user?.id,
           {
             new_email: values.email,
@@ -115,7 +115,7 @@ function AccountSettings({ userData, getUserData }) {
   const closeAccount = () => {
     axios
       .get(
-        "https://plankton-app-q74hx.ondigitalocean.app/users/delete/" + user?.id
+        "https://api.bevinzey.com/users/delete/" + user?.id
       )
       .then((res) => {
         Swal.fire("Account closed!", "", "success");

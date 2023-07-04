@@ -26,7 +26,7 @@ function MentorChatBevinzey() {
     selectedChat !== null &&
       axios
         .get(
-          "https://plankton-app-q74hx.ondigitalocean.app/ai-services/chat/" +
+          "https://api.bevinzey.com/ai-services/chat/" +
             selectedChat
         )
         .then((res) => {
@@ -73,7 +73,7 @@ function MentorChatBevinzey() {
         setNewMessage("");
         axios
           .post(
-            "https://plankton-app-q74hx.ondigitalocean.app/ai-services/gpt/ChatBevinzey/mentor",
+            "https://api.bevinzey.com/ai-services/gpt/ChatBevinzey/mentor",
             {
               userId: user.id,
               chatId: selectedChat,
@@ -105,7 +105,7 @@ function MentorChatBevinzey() {
   const createNewChatAndSend = (msg) => {
     axios
       .post(
-        "https://plankton-app-q74hx.ondigitalocean.app/ai-services/create/chat/mentor",
+        "https://api.bevinzey.com/ai-services/create/chat/mentor",
         {
           userId: user.id,
         }
@@ -125,7 +125,7 @@ function MentorChatBevinzey() {
 
         axios
           .post(
-            "https://plankton-app-q74hx.ondigitalocean.app/ai-services/gpt/ChatBevinzey/mentor",
+            "https://api.bevinzey.com/ai-services/gpt/ChatBevinzey/mentor",
             {
               userId: user.id,
               chatId: res.data.id,
@@ -146,7 +146,7 @@ function MentorChatBevinzey() {
   const createNewChat = async () => {
     await axios
       .post(
-        "https://plankton-app-q74hx.ondigitalocean.app/ai-services/create/chat/mentor",
+        "https://api.bevinzey.com/ai-services/create/chat/mentor",
         {
           userId: user.id,
         }
@@ -161,7 +161,7 @@ function MentorChatBevinzey() {
   const getChats = () => {
     axios
       .get(
-        "https://plankton-app-q74hx.ondigitalocean.app/ai-services/user/chats/mentor/" +
+        "https://api.bevinzey.com/ai-services/user/chats/mentor/" +
           user.id
       )
       .then((res) => {
@@ -187,7 +187,7 @@ function MentorChatBevinzey() {
   const clearChat = () => {
     axios
       .get(
-        "https://plankton-app-q74hx.ondigitalocean.app/ai-services/delete/chats/user/mentor/" +
+        "https://api.bevinzey.com/ai-services/delete/chats/user/mentor/" +
           user.id
       )
       .then((res) => {

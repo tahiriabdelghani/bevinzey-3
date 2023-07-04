@@ -60,7 +60,7 @@ function App() {
 
   const [subscriped, setSubscriped] = useState(false);
   axios
-    .get("https://plankton-app-q74hx.ondigitalocean.app/users/find/" + user?.id)
+    .get("https://api.bevinzey.com/users/find/" + user?.id)
     .then((res) => {
       if (res.data.subscription.Status === "Active") {
         setSubscriped(true);

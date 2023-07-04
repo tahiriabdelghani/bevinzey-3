@@ -34,7 +34,7 @@ function BlogList() {
   const getAllBlogs = async () => {
     setVisible(true)
     try {
-      await axios.get("https://plankton-app-q74hx.ondigitalocean.app/blog/findall").then(res => {
+      await axios.get("https://api.bevinzey.com/blog/findall").then(res => {
         setBlogs(res?.data)
       }).catch((error) => {
         dispatch(setMessage((error.response &&

@@ -27,7 +27,7 @@ export default function CouponFormPage() {
     const onsubmit = async () => {
         setIsVisible(true);
         if (isCoupon) {
-            await axios.post("https://plankton-app-q74hx.ondigitalocean.app/payment/subscription/initial",
+            await axios.post("https://api.bevinzey.com/payment/subscription/initial",
                 {
                     plan: clientsecret?.plan,
                     frequency: clientsecret?.frequency,
@@ -36,7 +36,7 @@ export default function CouponFormPage() {
                 }
             )
                 .then((response) => {
-                    axios.post("https://plankton-app-q74hx.ondigitalocean.app/payment/check-promo", {
+                    axios.post("https://api.bevinzey.com/payment/check-promo", {
                         plan: clientsecret?.plan,
                         frequency: clientsecret?.frequency,
                         code: couponCode
@@ -82,7 +82,7 @@ export default function CouponFormPage() {
         } else {
             await axios
                 .post(
-                    "https://plankton-app-q74hx.ondigitalocean.app/payment/subscription/initial",
+                    "https://api.bevinzey.com/payment/subscription/initial",
                     {
                         plan: clientsecret?.plan,
                         frequency: clientsecret?.frequency,

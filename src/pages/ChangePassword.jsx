@@ -43,7 +43,7 @@ function ChangePassword() {
       }, 3000);
     } else {
       await axios.post(
-        'https://plankton-app-q74hx.ondigitalocean.app/auth/change-password',
+        'https://api.bevinzey.com/auth/change-password',
         {
           email: email,
           password: newPassword

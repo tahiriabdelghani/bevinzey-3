@@ -23,7 +23,7 @@ function ProfileBody() {
   const getUserData = () => {
     axios
       .get(
-        "https://plankton-app-q74hx.ondigitalocean.app/users/find/" + user?.id
+        "https://api.bevinzey.com/users/find/" + user?.id
       )
       .then((res) => {
         setUserdata(res.data);
@@ -61,7 +61,7 @@ function ProfileBody() {
     setImageLoading(true)
     axios
     .post(
-      "https://plankton-app-q74hx.ondigitalocean.app/users/picture/update/" +
+      "https://api.bevinzey.com/users/picture/update/" +
       user.id,
       {
         urlPhoto: null,

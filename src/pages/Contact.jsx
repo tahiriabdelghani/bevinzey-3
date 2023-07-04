@@ -42,7 +42,7 @@ function Contact() {
     setIsVisible(true);
     await axios
       .post(
-        "https://plankton-app-q74hx.ondigitalocean.app/contact-us/send",
+        "https://api.bevinzey.com/contact-us/send",
         {
           subject: subject,
           full_name: full_name,

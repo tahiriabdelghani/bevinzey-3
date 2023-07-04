@@ -46,7 +46,7 @@ function StudyGuide() {
     setSummary("");
     axios
       .post(
-        "https://plankton-app-q74hx.ondigitalocean.app/ai-services/questions",
+        "https://api.bevinzey.com/ai-services/questions",
         {
           nbr_questions: parseInt(questionsNumber),
           study_guide: true,
@@ -83,7 +83,7 @@ function StudyGuide() {
   useEffect(() => {
     axios
       .get(
-        "https://plankton-app-q74hx.ondigitalocean.app/users/find/" + user?.id
+        "https://api.bevinzey.com/users/find/" + user?.id
       )
       .then((res) => {
         setUserdata(res.data);

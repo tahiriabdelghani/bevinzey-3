@@ -40,7 +40,7 @@ function SignIn() {
     setIsVisible(true);
     await axios
       .post(
-        "https://plankton-app-q74hx.ondigitalocean.app/auth/client/local/login",
+        "https://api.bevinzey.com/auth/client/local/login",
         {
           email: email,
           password: password,
@@ -52,7 +52,7 @@ function SignIn() {
         // }
         axios
           .get(
-            "https://plankton-app-q74hx.ondigitalocean.app/users/find/" +
+            "https://api.bevinzey.com/users/find/" +
             res?.data[1]
           )
           .then((res) => {
@@ -84,7 +84,7 @@ function SignIn() {
         );
       });
 
-    // await axios.get("https://plankton-app-q74hx.ondigitalocean.app/users/find/" + user[1]).then((response) => {
+    // await axios.get("https://api.bevinzey.com/users/find/" + user[1]).then((response) => {
     //   dispatch(setUserData(response.data))
     //   setIsVisible(false)
     // }).catch((error) => {
@@ -140,7 +140,7 @@ function SignIn() {
                     <div className="w-full px-3">
                       <GoogleAuth />
                       {/* <button
-                        // onClick={() => navigate("https://plankton-app-q74hx.ondigitalocean.app/auth/google")}
+                        // onClick={() => navigate("https://api.bevinzey.com/auth/google")}
                         className="btn px-0 text-white bg-red-600 hover:bg-red-700 w-full relative flex items-center">
                         <svg
                           className="w-4 h-4 fill-current text-white opacity-75 shrink-0 mx-4"

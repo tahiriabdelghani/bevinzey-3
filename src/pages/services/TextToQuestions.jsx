@@ -61,7 +61,7 @@ function TextToQuestions() {
       setResult("");
       axios
         .post(
-          "https://plankton-app-q74hx.ondigitalocean.app/ai-services/questions",
+          "https://api.bevinzey.com/ai-services/questions",
           {
             nbr_questions: parseInt(questionsNumber),
             study_guide: true,
@@ -108,7 +108,7 @@ function TextToQuestions() {
   const exportFile = () => {
     if (exportAs !== "txt") {
       const href =
-        "https://plankton-app-q74hx.ondigitalocean.app/ai-services/download-" +
+        "https://api.bevinzey.com/ai-services/download-" +
         exportAs +
         "2?text=" +
         encodeURIComponent(result);
@@ -131,7 +131,7 @@ function TextToQuestions() {
   useEffect(() => {
     axios
       .get(
-        "https://plankton-app-q74hx.ondigitalocean.app/users/find/" + user?.id
+        "https://api.bevinzey.com/users/find/" + user?.id
       )
       .then((res) => {
         setUserdata(res.data);

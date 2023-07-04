@@ -46,7 +46,7 @@ function SignUp() {
     setIsVisible(true);
     await axios
       .post(
-        "https://plankton-app-q74hx.ondigitalocean.app/auth/client/local/signup",
+        "https://api.bevinzey.com/auth/client/local/signup",
         {
           last_name: firstName,
           first_name: lastName,
@@ -58,13 +58,13 @@ function SignUp() {
       .then((res) => {
         axios
           .get(
-            "https://plankton-app-q74hx.ondigitalocean.app/users/find/" +
+            "https://api.bevinzey.com/users/find/" +
             res?.data[1]
           )
           .then((res) => {
             dispatch(setUserData(res.data));
             axios.post(
-              'https://plankton-app-q74hx.ondigitalocean.app/auth/SendEmail',
+              'https://api.bevinzey.com/auth/SendEmail',
               {
                 email: email,
               }

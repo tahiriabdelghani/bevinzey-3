@@ -180,7 +180,7 @@ function Manuscript() {
     setRefreshing(true);
     axios
       .get(
-        "https://plankton-app-q74hx.ondigitalocean.app/ai-services/manuscript/findAll/" +
+        "https://api.bevinzey.com/ai-services/manuscript/findAll/" +
           user.id
       )
       .then((res) => {
@@ -220,7 +220,7 @@ function Manuscript() {
       }
       axios
         .post(
-          "https://plankton-app-q74hx.ondigitalocean.app/ai-services/manuscript/create",
+          "https://api.bevinzey.com/ai-services/manuscript/create",
           {
             pdf_files: [...uploadedFiles, ...links],
             title: values.title,
@@ -279,7 +279,7 @@ function Manuscript() {
       const plainText = editor.getText();
       if (exportAs !== "txt") {
         const href =
-          "https://plankton-app-q74hx.ondigitalocean.app/ai-services/download-" +
+          "https://api.bevinzey.com/ai-services/download-" +
           exportAs +
           "2?text=" +
           encodeURIComponent(plainText);

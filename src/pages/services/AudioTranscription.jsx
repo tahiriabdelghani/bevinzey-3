@@ -25,7 +25,7 @@ function AudioTranscription() {
       formData.append("file", file, file?.name);
       axios
         .post(
-          "https://plankton-app-q74hx.ondigitalocean.app/ai-services/audio-to-text3/" +
+          "https://api.bevinzey.com/ai-services/audio-to-text3/" +
             user.id,
           formData
         )
@@ -72,7 +72,7 @@ function AudioTranscription() {
   const exportFile = () => {
     if (exportAs !== "txt") {
       const href =
-        "https://plankton-app-q74hx.ondigitalocean.app/ai-services/download-" +
+        "https://api.bevinzey.com/ai-services/download-" +
         exportAs +
         "2?text=" +
         encodeURIComponent(script);

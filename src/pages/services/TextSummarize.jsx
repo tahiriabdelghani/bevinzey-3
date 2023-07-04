@@ -55,7 +55,7 @@ function TextSummarize() {
       setSummary("");
       axios
         .post(
-          "https://plankton-app-q74hx.ondigitalocean.app/ai-services/summarize",
+          "https://api.bevinzey.com/ai-services/summarize",
           {
             input_text: text,
             userId: user?.id,
@@ -99,7 +99,7 @@ function TextSummarize() {
   const exportFile = () => {
     if (exportAs !== "txt") {
       const href =
-        "https://plankton-app-q74hx.ondigitalocean.app/ai-services/download-" +
+        "https://api.bevinzey.com/ai-services/download-" +
         exportAs +
         "2?text=" +
         encodeURIComponent(summary);
@@ -120,7 +120,7 @@ function TextSummarize() {
   useEffect(() => {
     axios
       .get(
-        "https://plankton-app-q74hx.ondigitalocean.app/users/find/" + user?.id
+        "https://api.bevinzey.com/users/find/" + user?.id
       )
       .then((res) => {
         setUserdata(res.data);

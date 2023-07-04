@@ -20,7 +20,7 @@ function Payment() {
     // }, []);
 
     // useEffect(() => {
-    //     fetch("https://plankton-app-q74hx.ondigitalocean.app/payment/subscription/initial", {
+    //     fetch("https://api.bevinzey.com/payment/subscription/initial", {
     //         method: "POST",
     //         body: JSON.stringify(
     //             clientSecret

@@ -10,7 +10,7 @@ function Chat({ chat, selectedChat, onClick, getChats, setSelectedChat,setMessag
   const deleteChat = () => {
     axios
       .get(
-        "https://plankton-app-q74hx.ondigitalocean.app/ai-services/delete/chat/" +
+        "https://api.bevinzey.com/ai-services/delete/chat/" +
           chat.id
       )
       .then((res) => {

@@ -3,11 +3,11 @@ import Illustration from "../images/features-illustration.svg";
 import FeaturesIcon01 from "../images/features-icon-01.svg";
 import FeaturesIcon02 from "../images/features-icon-02.svg";
 import FeaturesIcon03 from "../images/features-icon-03.svg";
-import TestimonialImage01 from "../images/testimonial-01.jpg";
+import TestimonialImage01 from "../images/testimonial-4.jpg";
 import ent1 from "../images/ent1.png";
 import ent2 from "../images/ent2.png";
-import TestimonialImage02 from "../images/testimonial-02.jpg";
-import TestimonialImage03 from "../images/testimonial-03.jpg";
+import TestimonialImage02 from "../images/testimonial-5.jpg";
+import TestimonialImage03 from "../images/testimonial-6.jpg";
 import FeaturesIcon04 from "../images/features-icon-04.svg";
 import Testimonial from "../partials/Testimonial.jsx";
 
@@ -89,7 +89,7 @@ function Testimonials() {
                   misunderstandings. I would highly recommend Bevinzey to any educator looking for
                   an effective way to help their students learn."
                   image={TestimonialImage01}
-                  name="Lilian Maria"
+                  name="Eleanor Hastings"
                   logo={ent1}
                   job="Educator"
                 />
@@ -100,9 +100,9 @@ function Testimonials() {
                   material I am reading. The summaries it creates of text are concise and accurate,
                   and the generated study guides are extremely helpful in organizing information."
                   image={TestimonialImage02}
-                  name="Hedvige Lussier"
+                  name="Malcolm Washington"
                   logo={ent2}
-                  job="Blogger"
+                  job="Student"
                 />
               </div>
               <div className="swiper-slide h-auto flex flex-col  p-2 rounded">
@@ -113,7 +113,7 @@ function Testimonials() {
                   using Bevinzey, I am now a B-average student. My teachers are really impressed
                   with the improvement in my performance. Thank you so much!"
                   image={TestimonialImage03}
-                  name="Rosa K. Duffy"
+                  name="Anika Patel"
                   logo={ent1}
                   job="Student"
                 />

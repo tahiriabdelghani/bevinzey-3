@@ -35,31 +35,46 @@ function ManuscriptCard({ manuscript, setResult }) {
           {/* <div className="text-sm font-medium text-slate-500 mb-2">{props.dates.from} <span className="text-slate-400">-&gt;</span> {props.dates.to}</div> */}
           <div className="flex justify-between items-center">
             <div className="flex justify-between w-full">
-              {manuscript.status === "finish" ? (
-                <div className="flex items-center">
-                  <div
-                    className={`mr-2 text-xs inline-flex font-medium rounded-full text-center px-2.5 py-1 bg-emerald-100 text-emerald-600`}
-                  >
-                    Finished
-                  </div>
-                  <MdEditNote onClick={() => setResult(response)} className="text-[25px] mr-2" />
-                  <MdContentCopy
-                    onClick={() => copyResult(plaintextResponse)}
-                    className="text-[16px] mr-4"
-                  />
-                  {copied && (
-                    <span className="text-xs px-2 py-0.5 bg-slate-800 opacity-40 mt-1 text-white rounded-full">
-                      Copied!
-                    </span>
-                  )}
-                </div>
-              ) : (
-                <div
-                  className={`text-xs inline-flex font-medium rounded-full text-center px-2.5 py-1 bg-yellow-100 text-emerald-600`}
-                >
-                  Processing...
-                </div>
-              )}
+            {(() => {
+  if (manuscript.status === "finish") {
+    return (
+      <div className="flex items-center">
+        <div
+          className={`mr-2 text-xs inline-flex font-medium rounded-full text-center px-2.5 py-1 bg-emerald-100 text-emerald-600`}
+        >
+          Finished
+        </div>
+        <MdEditNote onClick={() => setResult(response)} className="text-[25px] mr-2" />
+        <MdContentCopy
+          onClick={() => copyResult(plaintextResponse)}
+          className="text-[16px] mr-4"
+        />
+        {copied && (
+          <span className="text-xs px-2 py-0.5 bg-slate-800 opacity-40 mt-1 text-white rounded-full">
+            Copied!
+          </span>
+        )}
+      </div>
+    )
+  } else if (manuscript.status === "retrieved") {
+    return (
+      <div
+        className={`text-xs inline-flex font-medium rounded-full text-center px-2.5 py-1 bg-red-100 text-emerald-600`}
+      >
+        Error
+      </div>
+    )
+  } else {
+    return (
+      <div
+        className={`text-xs inline-flex font-medium rounded-full text-center px-2.5 py-1 bg-yellow-100 text-emerald-600`}
+      >
+        Processing...
+      </div>
+    )
+  }
+})()}
+
               <div className="text-slate-800">
                 {manuscript.createdAt.slice(0, 10)}{" "}
                 {manuscript.createdAt.slice(11, 16)}

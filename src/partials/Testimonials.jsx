@@ -99,7 +99,7 @@ function Testimonials() {
                   text="— Bevinzey is an amazing tool that has helped me to better understand the
                   material I am reading. The summaries it creates of text are concise and accurate,
                   and the generated study guides are extremely helpful in organizing information."
-                  image={TestimonialImage02}
+                  image={TestimonialImage03}
                   name="Malcolm Washington"
                   logo={ent2}
                   job="Student"
@@ -112,7 +112,7 @@ function Testimonials() {
                   potential I had if I could just find the right tools to prepare for my assessments. After
                   using Bevinzey, I am now a B-average student. My teachers are really impressed
                   with the improvement in my performance. Thank you so much!"
-                  image={TestimonialImage03}
+                  image={TestimonialImage02}
                   name="Anika Patel"
                   logo={ent1}
                   job="Student"

@@ -23,7 +23,7 @@ function BlogSingle() {
   const getBlogData = async () => {
     setVisible(true)
     try {
-      await axios.get("https://api.bevinzey.com/blog/" + Id).then(res => {
+      await axios.get("https://api.bevinzey.com/blog/" + id).then(res => {
 
         setBlogData(res?.data)
       }).catch((error) => {

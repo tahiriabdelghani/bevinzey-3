@@ -10,7 +10,7 @@ import parse from 'html-react-parser'
 import { setMessage } from '../redux/message';
 
 function BlogSingle() {
-  const Id = useParams().id;
+  const { id, name } = useParams();
 
 
   const [visible, setVisible] = useState(false)

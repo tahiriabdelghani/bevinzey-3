@@ -28,7 +28,10 @@ function BlogList() {
   const dispatch = useDispatch();
   const { message } = useSelector((state) => state.message)
   //Get all blogs
-
+  const formatBlogName = (name) => {
+    return name.toLowerCase().replace(/ /g, '-');
+  };
+  
   const [visible, setVisible] = useState(false)
   const [blogs, setBlogs] = useState([])
   const getAllBlogs = async () => {
@@ -86,7 +89,7 @@ function BlogList() {
               {visible ? <p>Loading...</p> : <>{blogs.map((blog, idx) => {
                 return <article className="flex flex-col md:h-full " key={idx} data-aos="fade-up">
                   <header>
-                    <Link to={`/blog-details/${blog?.id}`} className="block mb-6">
+                    <Link to={`/blog-details/${blog?.id}/${formatBlogName(blog?.title)}`} className="block mb-6">
                       <figure className="relative w-full h-40 bg-red-600 md:h-0 md:pb-9/16 md:overflow-hidden rounded-sm">
                         <img className="absolute  w-full h-full object-cover inset-0 transform hover:scale-105 transition duration-700 ease-out" src={blog.BlogPicture[blog.BlogPicture.length - 1]?.pictureUrl} alt="News 01" />
                       </figure>

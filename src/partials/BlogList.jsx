@@ -103,7 +103,7 @@ function BlogList() {
                       </ul>
                     </div>
                     <h3 className="md:h4 h5 w-80 md:w-full  md:max-w-none truncate mb-2">
-                      <Link to={`/blog-details/${blog?.id}`} className="hover:text-gray-100 transition  duration-150 ease-in-out">{blog?.title}</Link>
+                      <Link to={`/blog-details/${blog?.id}/${formatBlogName(blog?.title)}`} className="hover:text-gray-100 transition  duration-150 ease-in-out">{blog?.title}</Link>
                     </h3>
                   </header>
                   <div className='truncate w-80 md:w-full  max-h-6 md:max-h-12'>

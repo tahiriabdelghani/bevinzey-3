@@ -273,7 +273,7 @@ function Manuscript() {
     }
   }
 
-  const exportFile = () => {
+  const exportFile = async () => {
     if (quillRef.current) {
       const editor = quillRef.current.getEditor();
       const plainText = editor.getText();
@@ -479,9 +479,9 @@ function Manuscript() {
                     </div>
                     <div className="flex justify-end mt-14 items-center">
                       <button
-                        onClick={() => {
-                          exportFile();
-                        }}
+                       onClick={async () => {
+                      await exportFile();
+                      }}
                         className={
                           result !== ""
                             ? "btn-sm bg-gradient-to-r from-orange-600 via-orange-500 to-orange-600 text-white px-5 py-2.5 border-2  rounded-full hover:bg-orange-700 mx-3"

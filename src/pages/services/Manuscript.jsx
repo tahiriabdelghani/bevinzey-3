@@ -278,14 +278,23 @@ function Manuscript() {
       const editor = quillRef.current.getEditor();
       const plainText = editor.getText();
       if (exportAs !== "txt") {
-        const href =
-          "https://api.bevinzey.com/ai-services/download-" +
-          exportAs +
-          "2?text=" +
-          encodeURIComponent(plainText);
+        // make a post request to store the text
+        const response = await fetch('https://api.bevinzey.com/ai-services/store-text', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ text: plainText })
+        });
+
+        const data = await response.json(); // assuming the response is json
+        const id = data.id; // get the id from the response
+
+        // construct the href for download
+        const href = `https://api.bevinzey.com/ai-services/download-${exportAs}3/${id}`;
         const link = document.createElement("a");
         link.href = href;
-        link.setAttribute("download", "products.pdf"); //or any other extension
+        link.setAttribute("download", `products.${exportAs}`); //or any other extension
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);

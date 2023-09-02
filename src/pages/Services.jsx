@@ -95,6 +95,16 @@ function Services() {
       premium: true,
       icon: <img src={Manuscript} />,
     },
+    {
+      id: 7,
+      title: "File ChatBot",
+      link: "file-chat-bot",
+      desc: "Unleash the scholar in you with Authormatic on Bevinzey! Simply upload relevant research papers, outline your manuscript, hit generate, and watch as your manuscript comes to life at the click of a button! Welcome to a new era of effortless learning. Dive in with Authormatic now!",
+      color: "bg-[#C1AAF2]",
+      comingSoon: false,
+      premium: true,
+      icon: <img src={Manuscript} />,
+    },
   ];
 
   const dispatch = useDispatch();

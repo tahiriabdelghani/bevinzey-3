@@ -7,7 +7,6 @@ import SearchForm from "../partials/SearchForm";
 import Service from "../components/Service";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { setUserData } from "../redux/auth";
 import { clearMessage, setMessage } from "../redux/message";
 import { useNavigate } from "react-router-dom";
 import Chat from "../images/icons/chat.png";
@@ -17,6 +16,7 @@ import Manuscript from "../images/icons/manuscript.png";
 import Questions from "../images/icons/questions.png";
 import Summarizer from "../images/icons/summarize.png";
 import Transcription from "../images/icons/transcription.png";
+import ChatPDF from "../images/icons/pdfs.png";
 
 function Services() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -97,13 +97,13 @@ function Services() {
     },
     {
       id: 7,
-      title: "File ChatBot",
-      link: "file-chat-bot",
-      desc: "Unleash the scholar in you with Authormatic on Bevinzey! Simply upload relevant research papers, outline your manuscript, hit generate, and watch as your manuscript comes to life at the click of a button! Welcome to a new era of effortless learning. Dive in with Authormatic now!",
-      color: "bg-[#C1AAF2]",
+      title: "ChatPDF",
+      link: "chat-pdf",
+      desc: "ChatPDF lets you converse with PDFs as if they were human. Ideal for extracting information from extensive documents like manuals or contracts. The service creates a semantic index for each paragraph, and the AI provides answers based on relevant sections.",
+      color: "bg-[#a2aefc]",
       comingSoon: false,
       premium: true,
-      icon: <img src={Manuscript} />,
+      icon: <img src={ChatPDF} />,
     },
   ];
 
@@ -114,9 +114,7 @@ function Services() {
   const navigate = useNavigate();
   const getUserData = async () => {
     await axios
-      .get(
-        "https://api.bevinzey.com/users/find/" + user?.id
-      )
+      .get("https://api.bevinzey.com/users/find/" + user?.id)
       .then((res) => {
         setUserData(res.data);
         dispatch(setUserData(res.data));

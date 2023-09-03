@@ -38,6 +38,8 @@ import CouponFormPage from "./pages/CouponFormPage";
 import TopicExpander from "./pages/services/TopicExpander";
 import Manuscript from "./pages/services/Manuscript";
 import FileChatBevinzey from "./pages/services/FileChatBevinzey";
+import TermsOfService from "./pages/TermsOfService";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 function App() {
   const location = useLocation();
@@ -80,6 +82,8 @@ function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog-details/:id/:name" element={<BlogPost />} />
         <Route path="/about" element={<About />} />
+        <Route path="/terms-of-service" element={<TermsOfService />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/help" element={<Help />} />
         <Route
@@ -121,7 +125,7 @@ function App() {
           element={subscriped ? <MentorChatBevinzey /> : <Navigate replace to="/" />}
         />
         <Route
-          path="/services/file-chat-bot"
+          path="/services/chat-pdf"
           element={subscriped ? <FileChatBevinzey /> : <Navigate replace to="/" />}
         />
         <Route

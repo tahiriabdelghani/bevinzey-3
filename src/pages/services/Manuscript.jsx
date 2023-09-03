@@ -19,7 +19,6 @@ import AWS from "aws-sdk";
 import "react-quill/dist/quill.snow.css";
 import {
   AiFillCloseCircle,
-  AiOutlineClose,
   AiOutlineLink,
 } from "react-icons/ai";
 import { BsFillFileEarmarkFill } from "react-icons/bs";
@@ -56,7 +55,7 @@ function Manuscript() {
       
         reader.onload = () => {
           const fileContent = reader.result;
-          const renamedFile = new File([fileContent], `doc_${timestamp}.pdf`, {
+          const renamedFile = new File([fileContent], `doc_${timestamp}${i}.pdf`, {
             type: file.type
           });
           renamedFiles.push(renamedFile);
@@ -138,8 +137,8 @@ function Manuscript() {
     const REGION = "eu-west-3";
 
     AWS.config.update({
-      accessKeyId: "AKIAWBNV3LKW23ESOLON",
-      secretAccessKey: "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",
+      accessKeyId: "AKIAWBNV3LKWQPMJGBUY",
+      secretAccessKey: "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",
     });
     const s3 = new AWS.S3({
       params: { Bucket: S3_BUCKET },
@@ -159,8 +158,10 @@ function Manuscript() {
     };
 
     try {
+      console.log("uploading file")
       await s3.putObject(params).promise();
       const fileLink = `https://${S3_BUCKET}.s3.${REGION}.amazonaws.com/${file.name}`;
+      console.log(fileLink)
       console.log("File uploaded successfully.");
       return {
         success: true,

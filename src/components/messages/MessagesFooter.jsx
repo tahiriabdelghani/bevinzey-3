@@ -7,6 +7,7 @@ function MessagesFooter({
   setNewMessage,
   newMessage,
   toggleChatList,
+  disabled,
 }) {
   const textareaRef = useRef(null);
 
@@ -45,6 +46,7 @@ function MessagesFooter({
               Type a message
             </label>
             <textarea
+              disabled={disabled}
               ref={textareaRef}
               className="h-[40px] max-h-[80px] pr-10 w-full resize-none border text-black rounded focus:outline-none scrollbar-w-[3px] scrollbar-thin scrollbar-thumb-[#2e46e8] scrollbar-track-[#6d7eef] overflow-y-scroll scrollbar-thumb-rounded-full scrollbar-track-rounded-full"
               style={{ overflowY: "auto", overflowX: "hidden" }}
@@ -55,6 +57,7 @@ function MessagesFooter({
               }}
             ></textarea>
             <button
+              disabled={disabled}
               className="text-slate-800 absolute right-3 bottom-[50%] translate-y-[35%]"
               type="submit"
             >

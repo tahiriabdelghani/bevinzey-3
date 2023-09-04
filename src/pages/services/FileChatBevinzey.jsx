@@ -19,10 +19,12 @@ import { BsFillFileEarmarkFill } from "react-icons/bs";
 import { AiFillCloseCircle, AiOutlineLink } from "react-icons/ai";
 import Swal from "sweetalert2";
 import AWS from "aws-sdk";
+import infinity from "../../images/Infinity.svg";
 function FileChatBevinzey() {
   const { user } = useSelector((state) => state.auth);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [uploadLoading, setUploadLoading] = useState(false);
   const [newMessage, setNewMessage] = useState("");
 
   const [messages, setMessages] = useState([]);
@@ -112,7 +114,7 @@ function FileChatBevinzey() {
             timer: 1500,
           });
         } else {
-          setLoading(true);
+          setUploadLoading(true);
           let uploadedFiles = [];
           if (files.length > 0) {
             console.log("*********** UPLOADING FILES ***********");
@@ -135,18 +137,24 @@ function FileChatBevinzey() {
             })
             .then((res) => {
               console.log("SUCCESS!!!");
-              setLoading(false);
+              setUploadLoading(false);
               setFileUploaded(true);
               console.log(res);
               Swal.fire({
                 icon: "success",
-                title: "Files uploaded successfully",
+                title: "File(s) uploaded successfully.",
                 showConfirmButton: false,
                 timer: 1500,
               });
             })
             .catch((err) => {
-              setLoading(false);
+              setUploadLoading(false);
+              Swal.fire({
+                icon: "error",
+                title: "There was an error uploady file(s), please try again.",
+                showConfirmButton: false,
+                timer: 1500,
+              });
               console.log(err);
             });
         }
@@ -304,7 +312,7 @@ function FileChatBevinzey() {
           timer: 1500,
         });
       } else {
-        setLoading(true);
+        setUploadLoading(true);
         let uploadedFiles = [];
         if (files.length > 0) {
           console.log("*********** UPLOADING FILES ***********");
@@ -328,18 +336,24 @@ function FileChatBevinzey() {
           })
           .then((res) => {
             console.log("SUCCESS!!!");
-            setLoading(false);
+            setUploadLoading(false);
             setFileUploaded(true);
             console.log(res);
             Swal.fire({
               icon: "success",
-              title: "Files uploaded successfully",
+              title: "File(s) uploaded successfully",
               showConfirmButton: false,
               timer: 1500,
             });
           })
           .catch((err) => {
-            setLoading(false);
+            setUploadLoading(false);
+            Swal.fire({
+              icon: "error",
+              title: "There was an error uploady file(s), please try again.",
+              showConfirmButton: false,
+              timer: 1500,
+            });
             console.log(err);
           });
       }
@@ -621,6 +635,11 @@ function FileChatBevinzey() {
           </div>
         </main>
       </div>
+      {uploadLoading && (
+        <div className="absolute w-[40%] flex flex-col left-[50%] -translate-x-[50%] -translate-y-[50%] top-[50%]">
+          <img src={infinity} className="w-[40%] m-auto" />
+        </div>
+      )}
     </div>
   );
 }

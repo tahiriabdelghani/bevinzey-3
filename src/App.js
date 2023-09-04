@@ -125,7 +125,7 @@ function App() {
           element={subscriped ? <MentorChatBevinzey /> : <Navigate replace to="/" />}
         />
         <Route
-          path="/services/chat-pdf"
+          path="/services/text-interactor"
           element={subscriped ? <FileChatBevinzey /> : <Navigate replace to="/" />}
         />
         <Route

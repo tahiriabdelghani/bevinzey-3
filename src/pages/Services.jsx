@@ -97,9 +97,9 @@ function Services() {
     },
     {
       id: 7,
-      title: "ChatPDF",
-      link: "chat-pdf",
-      desc: "ChatPDF lets you converse with PDFs as if they were human. Ideal for extracting information from extensive documents like manuals or contracts. The service creates a semantic index for each paragraph, and the AI provides answers based on relevant sections.",
+      title: "Text Interactor",
+      link: "text-interactor",
+      desc: "Unlock the power of your documents with Text Interactor! Chat with books, papers, contracts, and more as if they were right beside you. Transform reading into a dynamic conversation and explore your texts like never before. Experience the future of learning with Text Interactor today!",
       color: "bg-[#a2aefc]",
       comingSoon: false,
       premium: true,

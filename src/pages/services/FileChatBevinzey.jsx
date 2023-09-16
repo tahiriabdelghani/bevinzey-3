@@ -562,7 +562,7 @@ function FileChatBevinzey() {
                           <div className="relative mb-1.5 flex items-center pr-10 h-[40px] bg-gray-300 text-gray-600 rounded">
                             <BsFillFileEarmarkFill className="mr-2 h-full text-white rounded-l px-2.5 bg-orange-500 min-w-[40px]" />
                             <span className="truncate overflow-ellipsis">
-                              {file.originalName}
+                              {file.name}
                             </span>
                             <span
                               onClick={() => {

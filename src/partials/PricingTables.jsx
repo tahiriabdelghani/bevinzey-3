@@ -190,7 +190,7 @@ function PricingTables() {
     if (isLoggedIn) {
       dispatch(
         setClientSecret({
-          plan: "Basic",
+          plan: "Premium",
           frequency: frequency,
           email: user?.email,
           price: priceOutput.plan3[value][1],

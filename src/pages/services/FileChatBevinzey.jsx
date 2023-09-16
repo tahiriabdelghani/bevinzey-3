@@ -236,6 +236,11 @@ function FileChatBevinzey() {
     fileInputRef.current.click();
   };
 
+
+
+  const getFileExtension = (filename) => {
+    return filename.slice(((filename.lastIndexOf(".") - 1) >>> 0) + 2);
+  };
   const handleFileChange = (event) => {
     const totalFiles = links.length + files.length + event.target.files.length;
     if (totalFiles > 10) {
@@ -255,19 +260,26 @@ function FileChatBevinzey() {
 
         reader.onload = () => {
           const fileContent = reader.result;
+          const fileExtension = getFileExtension(file.name); // Get the file extension
+          
           const renamedFile = new File(
             [fileContent],
-            `doc_${timestamp}${i}.pdf`,
+            `doc_${timestamp}${i}.${fileExtension}`, // Use the extracted extension here
             {
               type: file.type,
+              originalName: file.name, // Store the original name here
             }
           );
+          
           renamedFiles.push(renamedFile);
-
+        
           if (renamedFiles.length === selectedFiles.length) {
             setFiles([...files, ...renamedFiles]);
           }
         };
+        
+        
+        
 
         reader.readAsArrayBuffer(file);
       }
@@ -539,7 +551,7 @@ function FileChatBevinzey() {
                       </button>
                       <input
                         type="file"
-                        accept="application/pdf"
+                        accept="application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document, text/plain, text/html"
                         multiple
                         ref={fileInputRef}
                         className="hidden"
@@ -550,7 +562,7 @@ function FileChatBevinzey() {
                           <div className="relative mb-1.5 flex items-center pr-10 h-[40px] bg-gray-300 text-gray-600 rounded">
                             <BsFillFileEarmarkFill className="mr-2 h-full text-white rounded-l px-2.5 bg-orange-500 min-w-[40px]" />
                             <span className="truncate overflow-ellipsis">
-                              {file.name}
+                              {file.originalName}
                             </span>
                             <span
                               onClick={() => {

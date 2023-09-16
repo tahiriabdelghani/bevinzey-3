@@ -529,6 +529,17 @@ function PricingTables() {
                     </svg>
                     <span>Auto-Save</span>
                   </li>
+
+                  <li className="flex items-center mb-3">
+                    <svg
+                      className="w-3 h-3 fill-current text-green-500 mr-3 shrink-0"
+                      viewBox="0 0 12 12"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M10.28 2.28L3.989 8.575 1.695 6.28A1 1 0 00.28 7.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 2.28z" />
+                    </svg>
+                    <span>Text Interactor</span>
+                  </li>
                 </ul>
                 {!subscriped && (
                   <div onClick={handlePremiumGetStarted} className=" p-3 mt-6">
@@ -720,7 +731,7 @@ function PricingTables() {
                 data-aos-delay="800"
               >
                 <div className="mb-4 pb-4 border-b border-gray-700">
-                  <div className="h4 text-orange-600 mb-1">Starter</div>
+                  <div className="h4 text-orange-600 mb-1">Premium</div>
                 </div>
                 <div className="font-medium mb-3">
                   {priceOutput.plan3[value][0]}
